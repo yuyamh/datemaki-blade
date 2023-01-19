@@ -17,6 +17,6 @@ class DummyDataSeeder extends Seeder
     public function run()
     {
         User::factory()->count(3)->create();
-        Post::factory()->count(15)->create();
+        Post::factory()->count(30)->create();
     }
 }
