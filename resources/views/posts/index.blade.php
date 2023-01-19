@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">教案一覧</x-slot>
-    <div class="flex flex-col">
-        <div class="py-2 inline-block min-w-full px-8">
+    <div class="flex flex-col py-2 px-8">
+        <div class="inline-block min-w-full">
             <table class="w-full border-b-2 table-fixed">
                 <thead class="bg-white border-b-2 border-black">
                     <tr>
@@ -29,5 +29,6 @@
                 </tbody>
             </table>
         </div>
+        <div class="m-4">{{ $posts->links() }}</div>
     </div>
 </x-app-layout>
