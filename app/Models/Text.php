@@ -15,4 +15,9 @@ class Text extends Model
     ];
 
     public $timestamps = false;
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
