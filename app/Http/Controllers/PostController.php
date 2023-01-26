@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Text;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -26,18 +27,31 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        $texts = Text::all();
+        return view('posts.create', ['post' => $post, 'texts' => $texts]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $post = new Post();
+        $post->title = $validated->title;
+        $post->description = $validated->description;
+        $post->level = $validated->level;
+        $post->user_id = \Auth::id();
+        $post->file_name = $validated->file_name;
+        $post->text_id = $validated->text_id;
+        $post->save();
+
+        return redirect(route('posts.index'));
     }
 
     /**
