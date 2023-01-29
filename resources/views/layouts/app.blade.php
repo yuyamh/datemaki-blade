@@ -27,6 +27,11 @@
             @endif
 
             <!-- Page Content -->
+            @if (session('successMessage'))
+                <div class="text-center bg-green-300">
+                    <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
+                </div>
+            @endif
             <main class="container px-12 mx-auto">
                 {{ $slot }}
             </main>

@@ -35,7 +35,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\StorePostRequest  $request
+     * @param App\Http\Requests\StorePostRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePostRequest $request)
@@ -74,19 +74,29 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $texts = Text::all();
+        return view('posts.edit', ['post' => $post, 'texts' => $texts]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param App\Http\Requests\StorePostRequest $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+
+        $post->title = $validated['title'];
+        $post->description = $validated['description'];
+        $post->level = $validated['level'];
+        $post->file_name = $validated['file_name'];
+        $post->text_id = $validated['text_id'];
+        $post->save();
+
+        return redirect(route('posts.show', $post))->with('successMessage', '教案を更新しました。');;
     }
 
     /**
