@@ -96,7 +96,7 @@ class PostController extends Controller
         $post->text_id = $validated['text_id'];
         $post->save();
 
-        return redirect(route('posts.show', $post))->with('successMessage', '教案を更新しました。');;
+        return redirect(route('posts.show', $post))->with('successMessage', '教案を更新しました。');
     }
 
     /**
@@ -107,6 +107,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
     }
 }
