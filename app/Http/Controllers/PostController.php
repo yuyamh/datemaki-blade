@@ -74,6 +74,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize($post);
         $texts = Text::all();
         return view('posts.edit', ['post' => $post, 'texts' => $texts]);
     }
@@ -87,6 +88,7 @@ class PostController extends Controller
      */
     public function update(StorePostRequest $request, Post $post)
     {
+        $this->authorize($post);
         $validated = $request->validated();
 
         $post->title = $validated['title'];
@@ -107,6 +109,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize($post);
         $post->delete();
         return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
     }
