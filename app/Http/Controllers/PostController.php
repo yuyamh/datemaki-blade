@@ -43,12 +43,12 @@ class PostController extends Controller
         $validated = $request->validated();
 
         $post = new Post();
-        $post->title = $validated->title;
-        $post->description = $validated->description;
-        $post->level = $validated->level;
+        $post->title = $validated['title'];
+        $post->description = $validated['description'];
+        $post->level = $validated['level'];
         $post->user_id = \Auth::id();
-        $post->file_name = $validated->file_name;
-        $post->text_id = $validated->text_id;
+        $post->file_name = $validated['file_name'];
+        $post->text_id = $validated['text_id'];
         $post->save();
 
         return redirect(route('posts.index'));
