@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">概要</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid">{{ $post->description }}</td>
+                    <td class="p-4 border-2 border-gray-300 border-solid">{!! nl2br(e($post->description)) !!}</td>
                 </tr>
                 <tr>
                     <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">添付ファイル</th>
@@ -40,7 +40,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="my-5">
+        <div class="text-center my-9">
             <x-primary-button onclick="location.href='{{ route('posts.index') }}'">戻る</x-primary-button>
         </div>
     </div>
