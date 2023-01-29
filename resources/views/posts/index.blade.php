@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">教案一覧</x-slot>
-    <div class="flex flex-col py-2">
+    <div class="flex flex-col py-10">
         <div class="inline-block min-w-full">
             <table class="w-full border-b-2 table-fixed mytable">
                 <thead class="bg-orange-400 border-b-2 border-black">
