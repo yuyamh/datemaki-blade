@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
     <div class="px-10 py-5">
+        
         <div class="px-3 py-2 my-6 bg-orange-400">
             <h1 class="p-1 text-2xl font-bold text-gray-100">{{ $post->title }}</h1>
         </div>
@@ -41,6 +42,7 @@
             </tbody>
         </table>
         <div class="text-center my-9">
+            <x-primary-button onclick="location.href='{{ route('posts.edit', $post) }}'" class="mr-12 bg-orange-400 shadow-md hover:bg-orange-300">編集する</x-primary-button>
             <x-primary-button onclick="location.href='{{ route('posts.index') }}'">戻る</x-primary-button>
         </div>
     </div>
