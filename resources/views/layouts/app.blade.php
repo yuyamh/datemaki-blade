@@ -13,29 +13,27 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-gray-100">
-        <div class="flex flex-col h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <body class="flex flex-col min-h-screen font-sans antialiased bg-gray-100">
+        @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            @if (session('successMessage'))
-                <div class="text-center bg-green-300">
-                    <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    {{ $header }}
                 </div>
-            @endif
-            <main class="container px-12 mx-auto">
-                {{ $slot }}
-            </main>
-            <x-footer class="sticky bottom-0"/>
-        </div>
+            </header>
+        @endif
+
+        <!-- Page Content -->
+        @if (session('successMessage'))
+            <div class="text-center bg-green-300">
+                <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
+            </div>
+        @endif
+        <main class="container flex-1 px-12 mx-auto">
+            {{ $slot }}
+        </main>
+        <x-footer class="sticky bottom-0"/>
     </body>
 </html>
