@@ -2,8 +2,8 @@
     <x-slot name="header">教案詳細</x-slot>
     <div class="p-10">
         <x-primary-button onclick="location.href='{{ route('posts.index') }}'">戻る</x-primary-button>
-        <div class="px-3 py-2 bg-orange-400 my-7">
-            <h1 class="p-1 text-2xl font-bold text-gray-100">{{ $post->title }}</h1>
+        <div class="py-2 mb-2 mt-7">
+            <h1 class="p-1 text-4xl">{{ $post->title }}</h1>
         </div>
         <table class="container text-left border-collapse">
             <tbody>

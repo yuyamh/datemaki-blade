@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                         @if ($loop->index % 2 === 0)
                         <tr class="bg-gray-100 border-b hover:cursor-pointer hover:bg-yellow-100" data-href="{{ route('posts.show', $post) }}">
                         @else
@@ -27,7 +27,12 @@
                                 <td class="px-6 py-3 font-light truncate">{{ $post->user->name }}</a></td>
                                 <td class="px-6 py-3 font-light truncate">{{ $post->created_at->format('Y/m/d') }}</td>
                         </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td></td>
+                        <td class="px-6 py-3">まだ教案が投稿されていません。</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
