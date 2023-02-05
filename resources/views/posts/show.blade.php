@@ -29,7 +29,7 @@
                 </tr>
                 <tr>
                     <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">添付ファイル</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid hover:underline bg-gray-50"><a href="">{{ $post->file_name }}</a></td>
+                    <td class="p-4 border-2 border-gray-300 border-solid hover:underline bg-gray-50"><a href="{{ asset('storage/' . $post->file_name) }}">{{ $post->file_name }}</a></td>
                 </tr>
                 <tr>
                     <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">投稿日</th>
