@@ -51,7 +51,7 @@
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
 </div>
 <div class="form-group">
-    <label for="file_name" class="block text-lg">添付ファイル</label>
-    <input type="text" name="file_name" id="file" value="{{ old('file_name', $post->file_name) }}" class="form-input">
+    <label for="file" class="block text-lg">添付ファイル</label>
+    <input type="file" name="file_name" id="file" value="{{ old('file_name', $post->file_name) }}" class="my-1" required>
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>

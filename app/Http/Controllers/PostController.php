@@ -42,12 +42,21 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
+        // ファイルの保存と保存されたファイルのパス取得
+        $file = $validated['file_name'];
+
+        $path = '';
+        if (isset($file))
+        {
+            $path = $file->store('files', 'public');
+        }
+
         $post = new Post();
         $post->title = $validated['title'];
         $post->description = $validated['description'];
         $post->level = $validated['level'];
         $post->user_id = \Auth::id();
-        $post->file_name = $validated['file_name'];
+        $post->file_name = $path;
         $post->text_id = $validated['text_id'];
         $post->save();
 
@@ -111,6 +120,10 @@ class PostController extends Controller
     {
         $this->authorize($post);
         $post->delete();
+        // アップロードされたファイルの削除
+        if (isset($post->file_name)) {
+            \Storage::disk('public')->delete($post->file_name);
+        }
         return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
     }
 }
