@@ -31,16 +31,18 @@ class PostFactory extends Factory
         $level = $levels[rand(0, count($levels) - 1)];
 
         // 拡張子をランダムに付与してファイルを生成
-        $mimes = ['.pdf', '.doc', '.zip', '.xls'];
-        $mime = $mimes[rand(0, count($mimes) - 1)];
-        $filePath = UploadedFile::fake()->create('fileName' . $mime)->store('files', 'public');
+        // ファイル名は重複を避けるため、time()ではなくfakerを使用
+        $exts = ['pdf', 'doc', 'zip', 'xls'];
+        $ext = $exts[rand(0, count($exts) - 1)];
+        $fileName = $this->faker->word() . '.' . $ext;
+        UploadedFile::fake()->create($fileName)->storeAs('public/files', $fileName);
 
         return [
             'title' => $this->faker->word(),
             'description' => $this->faker->realText(),
             'level' => $level,
             'user_id' => $this->faker->numberBetween(1, 3),
-            'file_name' => $filePath,
+            'file_name' => $fileName,
         ];
     }
 }
