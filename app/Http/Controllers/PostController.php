@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Text;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -42,21 +43,19 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        // ファイルの保存と保存されたファイルのパス取得
+        // ファイルの保存
         $file = $validated['file_name'];
+        $ext  = $file->getClientOriginalextension();
+        $fileName = time() . '.' . $ext;
+        $file->storeAs('public/files', $fileName);
 
-        $path = '';
-        if (isset($file))
-        {
-            $path = $file->store('files', 'public');
-        }
 
         $post = new Post();
         $post->title = $validated['title'];
         $post->description = $validated['description'];
         $post->level = $validated['level'];
         $post->user_id = \Auth::id();
-        $post->file_name = $path;
+        $post->file_name = $fileName;
         $post->text_id = $validated['text_id'];
         $post->save();
 
@@ -71,8 +70,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $data = ['post' => $post];
-        return view('posts.show', $data);
+        $filePath = Storage::url('files/' . $post->file_name);
+        return view('posts.show', ['post' => $post, 'filePath' => $filePath]);
     }
 
     /**
