@@ -99,10 +99,17 @@ class PostController extends Controller
         $this->authorize($post);
         $validated = $request->validated();
 
+        // TODO:更新前に以前アップロードしたファイルの削除を行う必要あり
+
+        $file = $validated['file_name'];
+        $ext  = $file->getClientOriginalextension();
+        $fileName = time() . '.' . $ext;
+        $file->storeAs('public/files', $fileName);
+
         $post->title = $validated['title'];
         $post->description = $validated['description'];
         $post->level = $validated['level'];
-        $post->file_name = $validated['file_name'];
+        $post->file_name = $fileName;
         $post->text_id = $validated['text_id'];
         $post->save();
 
@@ -120,9 +127,8 @@ class PostController extends Controller
         $this->authorize($post);
         $post->delete();
         // アップロードされたファイルの削除
-        if (isset($post->file_name)) {
-            \Storage::disk('public')->delete($post->file_name);
-        }
+        \Storage::disk('public')->delete('files/' . $post->file_name);
+
         return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
     }
 }
