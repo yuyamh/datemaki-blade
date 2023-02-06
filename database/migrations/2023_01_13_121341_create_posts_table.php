@@ -36,7 +36,7 @@ return new class extends Migration
         Schema::dropIfExists('posts');
         // storage/app/public/fileディレクトリと、その中身の全削除
         if (Storage::disk('public')->exists('files')) {
-            Storage::deleteDirectory('images');
+            Storage::deleteDirectory('files');
         }
     }
 };
