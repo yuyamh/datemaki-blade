@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class DummyDataSeeder extends Seeder
 {
@@ -17,6 +18,10 @@ class DummyDataSeeder extends Seeder
     public function run()
     {
         User::factory()->count(3)->create();
+        // storage/app/public/fileディレクトリと、その中身の全削除
+        if (Storage::disk('public')->exists('files')) {
+            Storage::deleteDirectory('public/files');
+        }
         Post::factory()->count(30)->create();
     }
 }
