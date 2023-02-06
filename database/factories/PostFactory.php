@@ -33,7 +33,7 @@ class PostFactory extends Factory
         // 拡張子をランダムに付与してファイルを生成
         $mimes = ['.pdf', '.doc', '.zip', '.xls'];
         $mime = $mimes[rand(0, count($mimes) - 1)];
-        $filePath = UploadedFile::fake()->create('fileName' . $mime, 30)->store('files', 'public');
+        $filePath = UploadedFile::fake()->create('fileName' . $mime)->store('files', 'public');
 
         return [
             'title' => $this->faker->word(),
