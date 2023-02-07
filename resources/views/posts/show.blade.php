@@ -32,6 +32,14 @@
                     <td class="p-4 border-2 border-gray-300 border-solid hover:underline bg-gray-50"><a href="{{ $filePath }}">{{ $post->file_name }}</a></td>
                 </tr>
                 <tr>
+                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">ファイルサイズ</th>
+                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->file_size }}</td>
+                </tr>
+                <tr>
+                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">MIMEタイプ</th>
+                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->file_mimetype }}</td>
+                </tr>
+                <tr>
                     <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">投稿日</th>
                     <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->created_at->format('Y/m/d') }}</td>
                 </tr>
