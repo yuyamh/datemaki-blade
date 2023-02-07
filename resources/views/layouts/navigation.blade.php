@@ -12,7 +12,7 @@
             <x-primary-button><i class="fa-regular fa-bars"></i></x-primary-button>
         </x-slot>
         <x-slot name="content">
-            
+
         </x-slot>
     </x-dropdown> --}}
 
