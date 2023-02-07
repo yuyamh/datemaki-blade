@@ -20,6 +20,8 @@ class Post extends Model
         'level',
         'user_id',
         'file_name',
+        'file_mimetype',
+        'file_size',
         'text_id',
     ];
 

@@ -56,6 +56,8 @@ class PostController extends Controller
         $post->level = $validated['level'];
         $post->user_id = \Auth::id();
         $post->file_name = $fileName;
+        $post->file_mimetype = $file->getMimeType();
+        $post->file_size = $file->getSize();
         $post->text_id = $validated['text_id'];
         $post->save();
 
@@ -70,7 +72,24 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // アップロードファイルのパスを取得
         $filePath = Storage::url('files/' . $post->file_name);
+
+        // アップロードファイルのサイズをKB, MBへ変換
+        $kilobyte = 1024;
+        $megabyte = $kilobyte * 1000;
+
+        if ($megabyte <= $post->file_size)
+        {
+            $post->file_size = round($post->file_size / $megabyte, 2) . 'MB';
+        } elseif ($kilobyte <= $post->file_size)
+        {
+            $post->file_size = round($post->file_size / $kilobyte, 2) . 'KB';
+        } else
+        {
+            $post->file_size = $post->file_size . 'B';
+        }
+
         return view('posts.show', ['post' => $post, 'filePath' => $filePath]);
     }
 
@@ -110,6 +129,8 @@ class PostController extends Controller
         $post->description = $validated['description'];
         $post->level = $validated['level'];
         $post->file_name = $fileName;
+        $post->file_mimetype = $file->getMimeType();
+        $post->file_size = $file->getSize();
         $post->text_id = $validated['text_id'];
         $post->save();
 
