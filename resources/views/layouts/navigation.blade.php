@@ -1,24 +1,26 @@
 <nav class="flex w-full bg-orange-300"">
     <div class="flex items-stretch h-16">
-    <div class="flex items-center mx-2 shrink-0">
-        <a href="{{ route('posts.index') }}">
-            <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
-        </a>
+        <div class="flex items-center mx-2 shrink-0">
+            <a href="{{ route('posts.index') }}">
+                <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+            </a>
+        </div>
+        {{-- レスポンシブメニュー --}}
+        <x-dropdown class="md:hidden">
+            <x-slot name="trigger">
+                <x-primary-button class="p-1 md:hidden drop-buttons"><span class="text-2xl md:hidden"><i class="fa-sharp fa-solid fa-bars"></i></span></x-primary-button>
+            </x-slot>
+            <x-slot name="content">
+                @if (Auth::check())
+                    <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
+                    <x-dropdown-link>じぶんの教案</x-dropdown-link>
+                {{-- @else --}}
+                @endif
+            </x-slot>
+        </x-dropdown>
+        <a href="#" class="flex items-center px-4 py-2 text-xl font-bold leading-normal text-white">だてまき</a>
     </div>
-
-    {{-- レスポンシブメニュー
-    <x-dropdown class="lg:hidden">
-        <x-slot name="trigger">
-            <x-primary-button><i class="fa-regular fa-bars"></i></x-primary-button>
-        </x-slot>
-        <x-slot name="content">
-
-        </x-slot>
-    </x-dropdown> --}}
-
-    <a href="#" class="flex items-center px-4 py-2 text-xl font-bold leading-normal text-white">だてまき</a>
-    </div>
-    <div class="flex items-stretch flex-grow">
+    <div class="hidden md:items-stretch md:flex-grow md:flex">
         <div class="flex items-stretch justify-end ml-auto">
             @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
@@ -29,8 +31,8 @@
                 </x-primary-button>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                        <x-primary-button class="m-3 text-base bg-transparent rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
-                            <span ><i class="fa-solid fa-user"></i></span>
+                        <x-primary-button class="drop-buttons">
+                            <span><i class="fa-solid fa-user"></i></span>
                         </x-primary-button>
                     </x-slot>
                     <x-slot name="content">
