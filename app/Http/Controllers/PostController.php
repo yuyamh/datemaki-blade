@@ -103,7 +103,11 @@ class PostController extends Controller
     {
         $this->authorize($post);
         $texts = Text::all();
-        return view('posts.edit', ['post' => $post, 'texts' => $texts]);
+
+        // アップロードファイルのパスを取得
+        $filePath = Storage::url('files/' . $post->file_name);
+
+        return view('posts.edit', ['post' => $post, 'texts' => $texts, 'filePath' => $filePath]);
     }
 
     /**
@@ -118,19 +122,27 @@ class PostController extends Controller
         $this->authorize($post);
         $validated = $request->validated();
 
-        // TODO:更新前に以前アップロードしたファイルの削除を行う必要あり
+        // ファイルの差し替えを行う
+        if (isset($validated['file_name']))
+        {
+            // 元ファイルの削除
+            \Storage::disk('public')->delete('files/' . $post->file_name);
 
-        $file = $validated['file_name'];
-        $ext  = $file->getClientOriginalextension();
-        $fileName = time() . '.' . $ext;
-        $file->storeAs('public/files', $fileName);
+            // 新ファイルの保存
+            $file = $validated['file_name'];
+            $ext  = $file->getClientOriginalextension();
+            $fileName = time() . '.' . $ext;
+            $file->storeAs('public/files', $fileName);
+
+            // 新ファイルのデータをpostsテーブルの各カラムに保存
+            $post->file_name = $fileName;
+            $post->file_mimetype = $file->getMimeType();
+            $post->file_size = $file->getSize();
+        }
 
         $post->title = $validated['title'];
         $post->description = $validated['description'];
         $post->level = $validated['level'];
-        $post->file_name = $fileName;
-        $post->file_mimetype = $file->getMimeType();
-        $post->file_size = $file->getSize();
         $post->text_id = $validated['text_id'];
         $post->save();
 
