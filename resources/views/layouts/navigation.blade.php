@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-40 flex w-full h-20 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
+<nav class="sticky top-0 z-40 flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
     <div class="flex items-stretch w-full h-full">
         <div class="flex items-center h-full mx-2 shrink-0">
             <a href="{{ route('posts.index') }}">
