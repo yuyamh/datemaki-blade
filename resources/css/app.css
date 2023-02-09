@@ -9,7 +9,7 @@ html, body {
 }
 
 .nav-items {
-    @apply flex items-center px-6 py-2 text-white font-bold leading-normal hover:border-b-2 hover:text-yellow-800 hover:bg-yellow-200 hover:border-yellow-900;
+    @apply flex items-center px-3 py-2 text-white font-bold leading-normal hover:border-b-2 hover:text-yellow-800 hover:bg-yellow-200 hover:border-yellow-900;
 }
 
 table.mytable th {
@@ -29,5 +29,5 @@ table.mytable th {
 }
 
 .drop-buttons {
-    @apply m-3 text-base bg-transparent rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800;
+    @apply m-3 text-base bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800;
 }
