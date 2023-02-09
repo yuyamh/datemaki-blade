@@ -24,13 +24,16 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+
+        // アクションの名前を取得する
+        $action = $this->route()->getName();
+
+        $rules = [
             'title' => 'required|max:255',
             'description' => 'required|max:1000',
             'level' => ['required', Rule::in(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])],
             'file_name' => [
                 'file',
-                'required',
                 // 拡張子
                 'mimes:pdf,doc,zip,xls',
                 // MIMEタイプ：Word, Excel, Zip, PDF
@@ -38,5 +41,13 @@ class StorePostRequest extends FormRequest
             ],
             'text_id' => 'nullable|exists:texts,id',
         ];
+
+        // 投稿処理の際に、file_nameを入力必須にする
+        if ($action ==='posts.store')
+        {
+            $rules['file_name'][] = 'required';
+        }
+
+        return $rules;
     }
 }
