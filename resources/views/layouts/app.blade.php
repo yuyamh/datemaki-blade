@@ -18,7 +18,7 @@
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="sticky top-0 z-40 bg-white shadow">
+            <header class="bg-white shadow md:z-40 md:top-0 md:sticky">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
