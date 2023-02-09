@@ -52,6 +52,12 @@
 </div>
 <div class="form-group">
     <label for="file" class="block text-lg">添付ファイル</label>
-    <input type="file" name="file_name" id="file" value="{{ old('file_name', $post->file_name) }}" class="my-1" required>
+    @if (isset($post->file_name))
+        <div class="flex my-2 ml-2 text-sm">
+            <p class="mr-4">現在のファイル&nbsp;:&nbsp;{{ $post->file_name}}</p>
+            <p><a href="{{ $filePath }}" class="underline hover:text-gray-600">表示</a></p>
+        </div>
+    @endif
+    <input type="file" name="file_name" id="file" class="my-1">
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>
