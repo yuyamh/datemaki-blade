@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-40 flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
+<nav class="sticky top-0 z-50 flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
     <div class="flex items-stretch w-full h-full">
         <div class="flex items-center h-full mx-2 shrink-0">
             <a href="{{ route('posts.index') }}">
@@ -23,7 +23,7 @@
                 @endif
                 </x-slot>
             </x-dropdown>
-            <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white">だてまき</a>
+            <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
                     <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="flex flex-col justify-center px-1 mx-1 my-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <a href="#" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex">だてまき</a>
+        <a href="#" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
         <div class="hidden md:items-stretch md:flex-grow md:flex">
             <div class="flex items-stretch justify-end ml-auto">
                 @if (Auth::check())
