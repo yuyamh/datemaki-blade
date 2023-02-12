@@ -3,7 +3,7 @@
     <div class="flex flex-col py-10">
         <div class="inline-block min-w-full">
             <table class="w-full border-b-2 table-fixed mytable">
-                <thead class="bg-orange-400 border-b-2 border-black">
+                <thead class="bg-orange-300 border-b-2 border-gray-500">
                     <tr>
                         <div class="font-bold">
                             <th scope="col" class="w-1/12">♯</th>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="m-4">{{ $posts->links() }}</div>
+        <div class="m-4">{{ $posts->onEachSide(1)->links() }}</div>
     </div>
     <script>
     const tr = document.querySelectorAll('tr[data-href]');
