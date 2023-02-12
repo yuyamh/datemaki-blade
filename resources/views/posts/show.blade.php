@@ -52,11 +52,11 @@
         </table>
         @can('update', $post)
             <div class="flex justify-center my-9">
-                <x-primary-button onclick="location.href='{{ route('posts.edit', $post) }}'" class="mr-12 bg-orange-400 shadow-md hover:bg-orange-300">編集する</x-primary-button>
+                <x-primary-button onclick="location.href='{{ route('posts.edit', $post) }}'" class="mr-12 bg-orange-400 shadow-md hover:bg-orange-300 active:bg-orange-400 focus:bg-orange-400">編集する</x-primary-button>
                 <form onsubmit="return confirm('本当に削除しますか？')" action="{{ route('posts.destroy', $post) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <x-primary-button class="bg-red-500 shadow-md hover:bg-red-300">削除する</x-primary-button>
+                    <x-primary-button class="bg-red-500 shadow-md hover:bg-red-300 active:bg-red-500 focus:bg-red-500">削除する</x-primary-button>
                 </form>
             </div>
         @endcan

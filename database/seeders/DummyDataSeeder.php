@@ -22,6 +22,6 @@ class DummyDataSeeder extends Seeder
         if (Storage::disk('public')->exists('files')) {
             Storage::deleteDirectory('public/files');
         }
-        Post::factory()->count(30)->create();
+        Post::factory()->count(240)->create();
     }
 }
