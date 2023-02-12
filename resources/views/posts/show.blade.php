@@ -1,51 +1,52 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
-    <div class="p-10">
+    <div class="w-full px-3 py-8 md:p-10">
         <x-primary-button onclick="location.href='{{ route('posts.index') }}'">戻る</x-primary-button>
         <div class="py-2 mb-2 mt-7">
-            <h1 class="p-1 text-4xl">{{ $post->title }}</h1>
+            <h1 class="p-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>
         </div>
-        <table class="container text-left border-collapse">
+        <table class="container w-full border-collapse md:text-left md:table-fixed">
+            {{-- TODO:table-cellでずれるので修正 --}}
             <tbody>
-                <tr>
-                    <th class="w-1/5 p-4 bg-yellow-200 border-2 border-gray-300 border-solid">レベル</th>
-                    <td class="w-4/5 p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->level }}</td>
+                <tr class="show-tr">
+                    <th class="w-full show-th md:w-1/5">レベル</th>
+                    <td class="w-full show-td md:w-4/5">{{ $post->level }}</td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">使用テキスト</th>
+                <tr class="show-tr">
+                    <th class="show-th">使用テキスト</th>
                     @if(isset($post->text->text_name))
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->text->text_name }}</td>
+                    <td class="show-td">{{ $post->text->text_name }}</td>
                     @else
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">&ensp;-</td>
+                    <td class="show-td">&ensp;-</td>
                     @endif
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">投稿者</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid hover:underline bg-gray-50"><a href="">{{ $post->user->name }}</a></td>
+                <tr class="show-tr">
+                    <th class="show-th">投稿者</th>
+                    <td class="show-td hover:underline"><a href="">{{ $post->user->name }}</a></td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">概要</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{!! nl2br(e($post->description)) !!}</td>
+                <tr class="show-tr">
+                    <th class="show-th">概要</th>
+                    <td class="show-td">{!! nl2br(e($post->description)) !!}</td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">添付ファイル</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid hover:underline bg-gray-50"><a href="{{ $filePath }}">{{ $post->file_name }}</a></td>
+                <tr class="show-tr">
+                    <th class="show-th">添付ファイル</th>
+                    <td class="show-td hover:underline"><a href="{{ $filePath }}">{{ $post->file_name }}</a></td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">ファイルサイズ</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->file_size }}</td>
+                <tr class="show-tr">
+                    <th class="show-th">ファイルサイズ</th>
+                    <td class="show-td">{{ $post->file_size }}</td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">MIMEタイプ</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->file_mimetype }}</td>
+                <tr class="show-tr">
+                    <th class="show-th">MIMEタイプ</th>
+                    <td class="show-td">{{ $post->file_mimetype }}</td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">投稿日</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->created_at->format('Y/m/d') }}</td>
+                <tr class="show-tr">
+                    <th class="show-th">投稿日</th>
+                    <td class="show-td">{{ $post->created_at->format('Y/m/d') }}</td>
                 </tr>
-                <tr>
-                    <th class="p-4 bg-yellow-200 border-2 border-gray-300 border-solid">更新日</th>
-                    <td class="p-4 border-2 border-gray-300 border-solid bg-gray-50">{{ $post->updated_at->format('Y/m/d') }}</td>
+                <tr class="show-tr">
+                    <th class="md:border-b-2 show-th">更新日</th>
+                    <td class="border-b-2 show-td">{{ $post->updated_at->format('Y/m/d') }}</td>
                 </tr>
             </tbody>
         </table>
