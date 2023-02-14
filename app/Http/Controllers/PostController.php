@@ -162,6 +162,14 @@ class PostController extends Controller
         // アップロードされたファイルの削除
         \Storage::disk('public')->delete('files/' . $post->file_name);
 
-        return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
+
+        // if (Request::routeIs('posts/*'))
+        // {
+        //     return redirect(route('posts.index'))->with('successMessage', '教案を削除しました。');
+        // } else
+        // {
+        //     return redirect(route('myposts.index'))->with('successMessage', '教案を削除しました。');
+        // }
+
     }
 }
