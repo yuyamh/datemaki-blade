@@ -16,7 +16,7 @@
                 <x-slot name="content">
                 @if (Auth::check())
                     <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
-                    <x-dropdown-link>じぶんの教案</x-dropdown-link>
+                    <x-dropdown-link :href="route('myposts.index')">じぶんの教案</x-dropdown-link>
                 @else
                     <x-dropdown-link :href="route('login')">ログイン</x-dropdown-link>
                     <x-dropdown-link :href="route('register')">会員登録</x-dropdown-link>
@@ -63,7 +63,7 @@
             <div class="flex items-stretch justify-end ml-auto">
                 @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
-                <a href="#" class="nav-items">じぶんの教案</a>
+                <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
                 <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="m-3 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
                     <span class="mr-2"><i class="fa-solid fa-pen"></i></span>
                     <span>投稿する</span>
