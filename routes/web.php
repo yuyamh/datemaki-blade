@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\MyPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('/posts', PostController::class);
+Route::resource('/myposts', MyPostController::class)->only(['index']);
 
 require __DIR__.'/auth.php';
