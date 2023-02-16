@@ -5,7 +5,7 @@
             <x-form :texts="$texts" :post="$post" />
             <div class="flex justify-center py-5">
                 <x-primary-button type="submit" class="mr-12 bg-orange-400 shadow-md hover:bg-orange-300">投稿する</x-primary-button>
-                <x-secondary-button onclick="location.href='{{ route('posts.index') }}'">キャンセル</x-secondary-button>
+                <x-secondary-button onclick="location.href='{{ route('myposts.index') }}'">キャンセル</x-secondary-button>
             </div>
         </form>
     </div>
