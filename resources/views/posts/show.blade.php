@@ -1,12 +1,10 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
-    <div class="w-full px-3 py-8 md:p-10">
-        <x-primary-button onclick="location.href='{{ route('posts.index') }}'">戻る</x-primary-button>
-        <div class="py-2 mb-2 mt-7">
-            <h1 class="p-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>
+    <div class="w-full px-3 pt-8 pb-12 md:pt-10 md:pb-16">
+        <div class="mb-5">
+            <h1 class="pl-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>
         </div>
         <table class="container w-full border-collapse md:text-left md:table-fixed">
-            {{-- TODO:table-cellでずれるので修正 --}}
             <tbody>
                 <tr class="show-tr">
                     <th class="w-full show-th md:w-1/5">レベル</th>

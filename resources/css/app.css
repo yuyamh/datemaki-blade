@@ -12,8 +12,12 @@ html, body {
     @apply flex items-center px-3 py-2 text-white font-bold leading-normal hover:border-b-2 hover:text-yellow-800 hover:bg-yellow-200 hover:border-yellow-900;
 }
 
-table.mytable th {
-    @apply px-6 py-4 text-lg text-left text-gray-100;
+table.table-index th {
+    @apply px-6 py-4 text-lg text-left text-gray-100 whitespace-nowrap;
+}
+
+table.table-index td {
+    @apply px-6 py-3 whitespace-nowrap;
 }
 
 .show-th {
