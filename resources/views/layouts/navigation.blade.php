@@ -1,15 +1,15 @@
 <nav class="sticky top-0 z-50 flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
     <div class="flex items-stretch w-full h-full">
-        <div class="flex items-center h-full mx-2 shrink-0">
+        <div class="items-center hidden h-full md:mx-2 md:flex shrink-0">
             <a href="{{ route('posts.index') }}">
                 <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
             </a>
         </div>
-        {{-- レスポンシブメニュー --}}
-        <div class="flex items-center flex-grow md:hidden">
+        {{-- スマホ版レスポンシブメニュー --}}
+        <div class="flex items-center flex-grow ml-1 md:hidden">
             <x-dropdown class="h-full md:hidden" align="left">
                 <x-slot name="trigger" class="h-full">
-                    <x-primary-button class="h-full m-3 text-base bg-transparent rounded-lg md:hidden focus:bg-transparent focus:ring-transparent active:bg-yellow-100 focus:text-yellow-800" style="margin: 0px;">
+                    <x-primary-button class="h-full m-3 text-base bg-transparent rounded-lg md:hidden focus:bg-transparent focus:ring-transparent active:bg-yellow-100 focus:text-yellow-800" style="margin:0px;padding:2px 8px;">
                         <span class="text-2xl md:hidden"><i class="fa-sharp fa-solid fa-bars"></i></span>
                     </x-primary-button>
                 </x-slot>
@@ -23,6 +23,11 @@
                 @endif
                 </x-slot>
             </x-dropdown>
+            <div class="flex items-center h-full m-1 md:mx-2 shrink-0">
+                <a href="{{ route('posts.index') }}">
+                    <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+                </a>
+            </div>
             <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
