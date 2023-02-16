@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">編集フォーム</x-slot>
+    <x-slot name="title">教案編集フォーム</x-slot>
     <div class="w-full max-w-2xl py-8 pt-6 mx-auto">
         <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
             @method('PATCH')

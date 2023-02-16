@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">教案一覧</x-slot>
+    <x-slot name="title">みんなの教案</x-slot>
     <div class="flex flex-col p-2 md:py-10">
         <div class="overflow-x-auto md:overflow-x-hidden">
             <table class="border-b-2 table-fixed lg:w-full table-index">
