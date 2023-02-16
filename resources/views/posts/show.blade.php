@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
+    <x-slot name="title">教案詳細</x-slot>
     <div class="w-full px-3 pt-8 pb-12 md:pt-10 md:pb-16">
         <div class="mb-5">
             <h1 class="pl-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>

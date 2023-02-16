@@ -3,39 +3,46 @@
     <x-slot name="title">じぶんの教案</x-slot>
     <div class="flex flex-col p-2 md:py-10">
         <div class="overflow-x-auto md:overflow-x-hidden">
-            <table class="border-b-2 table-fixed md:w-full table-index">
-                <thead class="bg-orange-300 border-b-2 border-gray-500">
-                    <tr>
-                        <div class="font-bold">
-                            <th scope="col" class="w-1/12">♯</th>
-                            <th scope="col" class="w-5/12">タイトル</th>
-                            <th scope="col" class="w-2/12">レベル</th>
-                            <th scope="col" class="w-2/12">投稿日</th>
-                            <th scope="col" class="w-2/12"></th>
+            @if ($posts->isEmpty())
+                <div class="py-12">
+                    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900">
+                                <p>教案が投稿されていません。みんなにシェアしてみましょう！</p>
+                            </div>
                         </div>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($posts as $post)
-                        @if ($loop->index % 2 === 0)
-                        <tr class="bg-gray-100 border-b hover:cursor-pointer hover:bg-yellow-100" data-href="{{ route('posts.show', $post) }}">
-                        @else
-                        <tr class="bg-white border-b hover:cursor-pointer hover:bg-yellow-100" data-href="{{ route('posts.show', $post) }}">
-                        @endif
+                    </div>
+                </div>
+            @else
+                <table class="border-b-2 table-fixed md:w-full table-index">
+                    <thead class="bg-orange-300 border-b-2 border-gray-500">
+                        <tr>
+                            <div class="font-bold">
+                                <th scope="col" class="w-1/12">♯</th>
+                                <th scope="col" class="w-3/12 lg:w-5/12">タイトル</th>
+                                <th scope="col" class="w-2/12 lg:w-2/12">レベル</th>
+                                <th scope="col" class="w-2/12">投稿日</th>
+                                <th scope="col" class="w-2/12"></th>
+                            </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($posts as $post)
+                            @if ($loop->index % 2 === 0)
+                            <tr class="bg-gray-100 border-b hover:cursor-pointer hover:bg-yellow-100" data-href="{{ route('posts.show', $post) }}">
+                            @else
+                            <tr class="bg-white border-b hover:cursor-pointer hover:bg-yellow-100" data-href="{{ route('posts.show', $post) }}">
+                            @endif
                                 <td class="font-medium truncate">{{ $loop->index + 1 }}</td>
                                 <td class="font-light truncate">{{ $post->title }}</td>
                                 <td class="font-light truncate">{{ $post->level }}</td>
                                 <td class="font-light truncate">{{ $post->created_at->format('Y/m/d') }}</td>
                                 <td class="font-light truncate"></td>
-                        </tr>
-                    @empty
-                    <tr>
-                        <td></td>
-                        <td>教案が投稿されていません。みんなにシェアしてみましょう！</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
         <div class="m-4">{{ $posts->onEachSide(1)->links() }}</div>
     </div>

@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('updated_at', 'desc')->paginate(20);
+        $posts = Post::latest()->paginate(20);
         $data = ['posts' => $posts];
         return view('posts.index', $data);
     }
@@ -61,7 +61,7 @@ class PostController extends Controller
         $post->text_id = $validated['text_id'];
         $post->save();
 
-        return redirect(route('posts.index'));
+        return redirect(route('myposts.index'))->with('successMessage', '教案を投稿しました。');
     }
 
     /**
