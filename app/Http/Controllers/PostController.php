@@ -165,4 +165,18 @@ class PostController extends Controller
         return redirect(route('myposts.index'))->with('successMessage', '教案を削除しました。');
 
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * ブックマークした教案を表示する
+     * @return \Illuminate\Http\Response
+     */
+    public function bookmark_posts()
+    {
+        $posts = \Auth::user()->bookmark_posts()->latest()->paginate(20);
+        $data = ['posts' => $posts];
+
+        return view('posts.bookmarks', $data);
+    }
 }
