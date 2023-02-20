@@ -4,13 +4,12 @@
     <div class="w-full px-3 pt-8 pb-12 md:pt-10 md:pb-16">
         <div class="flex justify-between mb-5">
             <h1 class="pl-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>
+            {{-- 自分の投稿にはブックマークボタンを表示しない --}}
+            @if ($post->user_id !== Auth::id())
             <div class="flex content-center">
                 @if (!Auth::user()->is_bookmarked($post->id))
                 <form action="{{ route('bookmarks.store', $post) }}" method="POST" class="flex content-center">
                     @csrf
-                    {{-- <button>
-                        <i class="fa-regular fa-bookmark"></i><span class="m-2">ブックマーク</span>
-                    </button> --}}
                     <x-primary-button  class="m-1 text-sm text-gray-600 bg-transparent border-gray-500 rounded-3xl md:rounded-2xl hover:bg-transparent focus:bg-transparent focus:ring-0 active:bg-transparent focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400">
                         <i class="md:mr-2 fa-regular fa-bookmark fa-lg"></i>
                         <p class="hidden md:block">ブックマーク追加</p>
@@ -27,6 +26,7 @@
                 </form>
                 @endif
             </div>
+            @endif
         </div>
         <table class="container w-full border-collapse md:text-left md:table-fixed">
             <tbody>

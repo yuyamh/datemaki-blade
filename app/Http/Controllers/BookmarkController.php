@@ -20,7 +20,7 @@ class BookmarkController extends Controller
             $user->bookmark_posts()->attach($postId);
         }
 
-        return back();
+        return back()->with('successMessage', 'ブックマーク一覧に保存しました。');
     }
 
 
