@@ -2,8 +2,31 @@
     <x-slot name="header">教案詳細</x-slot>
     <x-slot name="title">教案詳細</x-slot>
     <div class="w-full px-3 pt-8 pb-12 md:pt-10 md:pb-16">
-        <div class="mb-5">
+        <div class="flex justify-between mb-5">
             <h1 class="pl-1 text-2xl lg:text-4xl">{{ $post->title }}</h1>
+            <div class="flex content-center">
+                @if (!Auth::user()->is_bookmarked($post->id))
+                <form action="{{ route('bookmarks.store', $post) }}" method="POST" class="flex content-center">
+                    @csrf
+                    {{-- <button>
+                        <i class="fa-regular fa-bookmark"></i><span class="m-2">ブックマーク</span>
+                    </button> --}}
+                    <x-primary-button  class="m-1 text-sm text-gray-600 bg-transparent border-gray-500 rounded-3xl md:rounded-2xl hover:bg-transparent focus:bg-transparent focus:ring-0 active:bg-transparent focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400">
+                        <i class="md:mr-2 fa-regular fa-bookmark fa-lg"></i>
+                        <p class="hidden md:block">ブックマーク追加</p>
+                    </x-primary-button>
+                </form>
+                @else
+                <form action="{{ route('bookmarks.destroy', $post) }}" method="POST" class="flex content-center">
+                    @csrf
+                    @method('DELETE')
+                    <x-primary-button  class="m-1 text-sm text-gray-600 bg-orange-200 border-gray-500 rounded-3xl md:rounded-2xl hover:bg-orange-200 focus:bg-orange-200 focus:ring-0 active:bg-orange-200 focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400">
+                        <i class="md:mr-2 fa-regular fa-bookmark fa-lg"></i>
+                        <p class="hidden md:block">ブックマーク済み</p>
+                    </x-primary-button>
+                </form>
+                @endif
+            </div>
         </div>
         <table class="container w-full border-collapse md:text-left md:table-fixed">
             <tbody>
