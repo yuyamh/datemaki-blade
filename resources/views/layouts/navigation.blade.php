@@ -44,7 +44,7 @@
                         <x-slot name="content">
                             <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                             <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                            <x-dropdown-link>ブックマーク一覧</x-dropdown-link>
+                            <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -82,7 +82,7 @@
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                         <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                        <x-dropdown-link>ブックマーク一覧</x-dropdown-link>
+                        <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
