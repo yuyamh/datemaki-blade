@@ -8,7 +8,7 @@
                     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                             <div class="p-6 text-gray-900">
-                                <p>教案が投稿されていません。みんなにシェアしてみましょう！</p>
+                                <p>教案を投稿していません。みんなにシェアしてみましょう！</p>
                             </div>
                         </div>
                     </div>
