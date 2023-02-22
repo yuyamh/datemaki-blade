@@ -32,6 +32,12 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+       $path = null;
+       if ($request->hasFile('picture')) {
+           $path = $request->file('picture')->store('profile_icons', 'public');
+           $request->user()->profile_photo_path = $path;
+       }
+
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
@@ -51,6 +57,12 @@ class ProfileController extends Controller
         Auth::logout();
 
         $user->delete();
+
+        // ユーザーが設定したプロフィールアイコン画像の削除
+        if (\Storage::disk('public')->exists('profile_icons')) {
+            \Storage::disk('public')->delete($user->profile_photo_path);
+
+        }
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
