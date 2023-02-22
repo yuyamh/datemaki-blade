@@ -157,6 +157,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        dd($post->user->profile_photo_path);
         $this->authorize($post);
         $post->delete();
         // アップロードされたファイルの削除
