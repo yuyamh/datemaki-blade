@@ -22,6 +22,12 @@ class DummyDataSeeder extends Seeder
         if (Storage::disk('public')->exists('files')) {
             Storage::deleteDirectory('public/files');
         }
+
+        // アップロードされたプロフィール画像を全削除
+        if (Storage::disk('public')->exists('profile_icons')) {
+            Storage::deleteDirectory('public/profile_icons');
+        }
+
         Post::factory()->count(240)->create();
     }
 }
