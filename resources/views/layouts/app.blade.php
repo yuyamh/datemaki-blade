@@ -31,7 +31,7 @@
                 <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
             </div>
         @endif
-        <main class="container flex-1 mx-auto lg:px-12">
+        <main class="container flex-1 px-3 mx-auto lg:px-12">
             {{ $slot }}
         </main>
         <x-footer class="sticky bottom-0"/>
