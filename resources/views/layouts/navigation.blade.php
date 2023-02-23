@@ -37,9 +37,7 @@
                     </x-primary-button>
                     <x-dropdown contentClasses="p-1 bg-white mr-2">
                         <x-slot name="trigger">
-                            <x-primary-button class="m-2 text-lg bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800 hover:bg-yellow-200">
-                                <span><i class="fa-solid fa-user"></i></span>
-                            </x-primary-button>
+                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                         </x-slot>
                         <x-slot name="content">
                             <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
@@ -65,7 +63,7 @@
 
         <a href="#" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
         <div class="hidden md:items-stretch md:flex-grow md:flex">
-            <div class="flex items-stretch justify-end ml-auto">
+            <div class="flex items-stretch justify-end pr-2 ml-auto">
                 @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
                 <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
@@ -75,9 +73,7 @@
                 </x-primary-button>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                        <x-primary-button class="m-3 text-base bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800 hover:bg-yellow-200">
-                            <span><i class="fa-solid fa-user"></i></span>
-                        </x-primary-button>
+                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                     </x-slot>
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
