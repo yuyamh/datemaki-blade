@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Text;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -14,11 +16,53 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(21);
-        $data = ['posts' => $posts];
-        return view('posts.index', $data);
+        // 検索フォームに入力された値を取得
+        // まずはキーワードでうまく絞り込めるか確認中。
+        $keyword = $request->input('keyword');
+        // $text = $request->input('text');
+        // $level = $request->input('level');
+
+        $query = Post::query();
+
+        // SQLがうまくいっているかどうか確認中。
+        $results = DB::table('posts')
+                    ->join('texts', 'posts.text_id', '=', 'texts.id')
+                    ->join('users', 'posts.user_id', '=', 'users.id')
+                    ->select('level', 'title', 'description', 'users.name as user_name', 'text_name')
+                    ->toSql();
+
+        
+        dd($results);
+
+
+        // 検索フォームに入力値があった場合だけ実行
+        if (!empty($keyword))
+        {
+            $query->where('title', 'LIKE' , '%' . $keyword . '%')
+                  ->orWhere('name', 'LIKE', '%' . $keyword . '%')
+                  ->orWhere('description', 'LIKE', '%' . $keyword . '%');
+        }
+
+        // if (!empty($text))
+        // {
+        //     $query->where('text_name', '=' , $text);
+        // }
+
+        // if (!empty($level))
+        // {
+        //     $query->where('level', '=' , $level);
+        // }
+
+        $posts = $query->paginate(21);
+        // $data = ['posts' => $posts];
+        // $texts = Text::all();
+
+        // dd($posts);
+
+        // return view('posts.index', ['posts' => $posts, 'texts' => $texts]);
+        return view('posts.index', ['posts' => $posts, 'keyword' => $keyword]);
     }
 
     /**
