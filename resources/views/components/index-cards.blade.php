@@ -32,7 +32,6 @@
     </div>
     @endforeach
 </div>
-{{-- TODO:ページネーションの指定をあとで変更する --}}
 <div class="m-4">{{ $posts->appends(request()->input())->onEachSide(1)->links() }}</div>
 <script>
 const cards = document.querySelectorAll('.card');
