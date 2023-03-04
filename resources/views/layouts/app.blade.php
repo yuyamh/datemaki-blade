@@ -32,7 +32,14 @@
             </div>
         @endif
         <main class="container flex-1 px-3 mx-auto lg:p-0">
-            {{ $slot }}
+            <div class="grid grid-cols-12 py-12">
+                <div class="col-span-9">
+                    {{ $slot }}
+                </div>
+                <div class="col-span-3 ml-6">
+                    <x-search-form />
+                </div>
+            </div>
         </main>
         <x-footer class="sticky bottom-0"/>
     </body>
