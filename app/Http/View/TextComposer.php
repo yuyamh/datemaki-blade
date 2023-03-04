@@ -14,9 +14,6 @@ class TextComposer
         $this->texts = Text::all();
     }
 
-    // TODO:postsもView Composerで渡す必要あり
-    // app.blade.phpでgridレイアウト（検索の方の背景色ちょっと変える）
-
     public function compose(View $view)
     {
         $view->with('texts', $this->texts);
