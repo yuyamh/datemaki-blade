@@ -19,50 +19,47 @@ class PostController extends Controller
     public function index(Request $request)
     {
         // 検索フォームに入力された値を取得
-        // まずはキーワードでうまく絞り込めるか確認中。
-        $keyword = $request->input('keyword');
-        // $text = $request->input('text');
-        // $level = $request->input('level');
+        $keyword = $request->keyword;
+        $text_id = $request->text_id;
+        $level = $request->level;
 
-        $query = Post::query();
+        $query = Post::latest();
 
-        // SQLがうまくいっているかどうか確認中。
-        $results = DB::table('posts')
-                    ->join('texts', 'posts.text_id', '=', 'texts.id')
-                    ->join('users', 'posts.user_id', '=', 'users.id')
-                    ->select('level', 'title', 'description', 'users.name as user_name', 'text_name')
-                    ->toSql();
-
-        
-        dd($results);
-
-
-        // 検索フォームに入力値があった場合だけ実行
-        if (!empty($keyword))
+        // キーワードで検索をしたときだけ実行
+        if ($keyword)
         {
-            $query->where('title', 'LIKE' , '%' . $keyword . '%')
-                  ->orWhere('name', 'LIKE', '%' . $keyword . '%')
-                  ->orWhere('description', 'LIKE', '%' . $keyword . '%');
+            $word = '%' . $keyword . '%';
+            $query->where(function ($q) use ($word)
+            {
+                $q->where('title', 'like', $word);
+                $q->orWhere('description', 'like', $word);
+            $q->orWhereHas('user', function ($u) use ($word)
+                {
+                    $u->where('name', 'like', $word);
+                });
+            });
         }
 
-        // if (!empty($text))
-        // {
-        //     $query->where('text_name', '=' , $text);
-        // }
+        // 使用テキストの検索があったとき実行
+        if ($text_id)
+        {
+            $query->where('text_id', $text_id);
+        }
 
-        // if (!empty($level))
-        // {
-        //     $query->where('level', '=' , $level);
-        // }
+        // レベルの検索があったとき実行
+        if ($level)
+        {
+            $query->where('level', $level);
+        }
 
-        $posts = $query->paginate(21);
+        $posts = $query->paginate(15);
         // $data = ['posts' => $posts];
-        // $texts = Text::all();
+        $texts = Text::all();
 
         // dd($posts);
 
-        // return view('posts.index', ['posts' => $posts, 'texts' => $texts]);
-        return view('posts.index', ['posts' => $posts, 'keyword' => $keyword]);
+        return view('posts.index', ['posts' => $posts, 'texts' => $texts]);
+        // return view('posts.index', $data);
     }
 
     /**
