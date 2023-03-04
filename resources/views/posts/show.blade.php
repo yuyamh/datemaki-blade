@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
     <x-slot name="title">教案詳細</x-slot>
-    <div class="w-full px-3 pt-8 pb-12 md:pt-10 md:pb-16">
+    <div class="w-full md:pb-16">
         <div class="flex justify-between mb-5">
             <h1 class="w-2/3 pl-1 text-2xl truncate lg:text-3xl lg:w-4/5">{{ $post->title }}</h1>
             {{-- 自分の投稿にはブックマークボタンを表示しない --}}
