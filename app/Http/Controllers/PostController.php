@@ -53,13 +53,9 @@ class PostController extends Controller
         }
 
         $posts = $query->paginate(15);
-        // $data = ['posts' => $posts];
-        $texts = Text::all();
+        $data = ['posts' => $posts];
 
-        // dd($posts);
-
-        return view('posts.index', ['posts' => $posts, 'texts' => $texts]);
-        // return view('posts.index', $data);
+        return view('posts.index', $data);
     }
 
     /**
