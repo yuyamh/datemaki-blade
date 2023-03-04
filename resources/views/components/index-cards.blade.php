@@ -9,7 +9,7 @@
     </div>
 </div>
 @else
-<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 lg:mr-6">
     @foreach ($posts as $post)
     <div class="flex flex-col items-start justify-center w-full p-3 bg-white rounded-lg cursor-pointer sahdow-lg card hover:scale-95 hover:bg-yellow-50" data-href="{{ route('posts.show', $post) }}">
         <div class="flex justify-start w-full mb-4">
