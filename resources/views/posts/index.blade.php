@@ -6,7 +6,7 @@
             <x-index-cards :posts="$posts" message="教案がまだ投稿されていません。"/>
         </div>
         <div class="col-span-3">
-            <x-search-form :keyword="$keyword" :post="$posts" :/>
+            <x-search-form />
         </div>
     </div>
 </x-app-layout>
