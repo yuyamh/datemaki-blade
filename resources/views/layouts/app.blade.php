@@ -32,11 +32,11 @@
             </div>
         @endif
         <main class="container flex-1 px-3 mx-auto lg:p-0">
-            <div class="grid grid-cols-12 py-12">
-                <div class="col-span-9">
+            <div class="block w-full lg:grid-cols-12 lg:grid py-14">
+                <div class="lg:col-span-9">
                     {{ $slot }}
                 </div>
-                <div class="col-span-3 ml-6">
+                <div class="block lg:col-span-3 lg:px-6">
                     <x-search-form />
                 </div>
             </div>
