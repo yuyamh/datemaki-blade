@@ -31,10 +31,10 @@
             <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
-                    <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="flex flex-col justify-center px-1 mx-1 my-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
-                        <i class="my-1 fa-solid fa-pen"></i>
-                        <div class="mx-2">投稿</div>
-                    </x-primary-button>
+                    <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-4 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
+                        <span><i class="fa-solid fa-pen"></i></span>
+                        <span>投稿</span>
+                    </a>
                     <x-dropdown contentClasses="p-1 bg-white mr-2">
                         <x-slot name="trigger">
                             <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
@@ -53,10 +53,10 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <x-primary-button onclick="location.href='#'" class="px-2 m-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
+                    <a href="#" class="flex items-center px-2 mx-2 my-1 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                         <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
                         <span>かんたんログイン</span>
-                    </x-primary-button>
+                    </a>
                 @endif
             </div>
         </div>
@@ -67,10 +67,10 @@
                 @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
                 <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
-                <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="m-3 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
+                <a href="{{ route('posts.create') }}" class="flex items-center px-2 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-2"><i class="fa-solid fa-pen"></i></span>
                     <span>投稿する</span>
-                </x-primary-button>
+                </a>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
                             <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
@@ -91,10 +91,10 @@
                 @else
                 <a href="{{ route('login') }}" class="nav-items">ログイン</a>
                 <a href="{{ route('register') }}" class="nav-items">会員登録</a>
-                <x-primary-button onclick="location.href='#'" class="m-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
-                    <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
+                <a href="#" class="flex items-center px-2 mx-2 my-1 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
+                    <span class="mr-2"><i class="fa-solid fa-user-check"></i></span>
                     <span>かんたんログイン</span>
-                </x-primary-button>
+                </a>
                 @endif
             </div>
         </div>
