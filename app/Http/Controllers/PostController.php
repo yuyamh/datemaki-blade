@@ -66,8 +66,9 @@ class PostController extends Controller
     public function create()
     {
         $post = new Post();
-        $texts = Text::all();
-        return view('posts.create', ['post' => $post, 'texts' => $texts]);
+        $data = ['post' => $post];
+
+        return view('posts.create', $data);
     }
 
     /**
@@ -139,12 +140,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize($post);
-        $texts = Text::all();
 
         // アップロードファイルのパスを取得
         $filePath = Storage::url('files/' . $post->file_name);
 
-        return view('posts.edit', ['post' => $post, 'texts' => $texts, 'filePath' => $filePath]);
+        return view('posts.edit', ['post' => $post, 'filePath' => $filePath]);
     }
 
     /**
