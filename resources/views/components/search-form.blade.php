@@ -1,16 +1,16 @@
     <div class="p-6 rounded-md shadow-md bg-gray-50">
-        <div class="flex w-full pb-2 text-xl border-b border-gray-300">
+        <div class="flex w-full pb-2 mb-5 text-xl border-b border-gray-300">
             <span class="mr-2"><i class="fa-solid fa-magnifying-glass"></i></span>
             <h1>教案検索</h1>
         </div>
         <form action="{{ route('posts.index') }}" method="GET">
             <div class="form-group">
                 <label for="keyword" class="block text-lg">キーワード</label>
-                <input type="text" id="keyword" name="keyword" value="{{ Request::get('keyword') }}" placeholder="Search" class="form-input" autocomplete=”off”>
+                <input type="text" id="keyword" name="keyword" value="{{ Request::get('keyword') }}" placeholder="Search" class="form-input-search" autocomplete=”off”>
             </div>
             <div class="form-group">
             <p class="block text-lg">使用テキスト</p>
-                <select name="text_id" class="form-input">
+                <select name="text_id" class="form-input-search">
                     <option value="">なし</option>
                     @foreach ($texts as $text)
                     <option value="{{ $text->id }}"{{ $text->id == Request::get('text_id') ? ' selected' : '' }}>
