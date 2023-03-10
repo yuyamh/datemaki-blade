@@ -28,7 +28,7 @@
                     <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
                 </a>
             </div>
-            <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
+            <a href="{{ route('posts.index') }}" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
                     <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-4 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
@@ -61,7 +61,8 @@
             </div>
         </div>
 
-        <a href="#" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
+        {{-- PC版レスポンシブメニュー --}}
+        <a href="{{ route('posts.index') }}" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
         <div class="hidden md:items-stretch md:flex-grow md:flex">
             <div class="flex items-stretch justify-end pr-2 ml-auto">
                 @if (Auth::check())
