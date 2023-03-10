@@ -2,7 +2,7 @@
     <div class="flex items-stretch w-full h-full">
         <div class="items-center hidden h-full md:mx-2 md:flex shrink-0">
             <a href="{{ route('posts.index') }}">
-                <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+                <x-application-logo class="block w-auto text-gray-800 rounded-full fill-current h-9" />
             </a>
         </div>
         {{-- スマホ版レスポンシブメニュー --}}

@@ -10,6 +10,11 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{{ asset('/favicons/favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ asset('favicons/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('favicons/android-chrome-192x192.png') }}">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
