@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MyPostController;
 use App\Http\Controllers\BookmarkController;
-use App\Models\Bookmark;
 
 /*
 |--------------------------------------------------------------------------
