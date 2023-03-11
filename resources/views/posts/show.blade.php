@@ -28,7 +28,7 @@
             </div>
             @endif
         </div>
-        <table class="container w-full border-collapse md:text-left md:table-fixed">
+        <table class="w-full border-collapse md:text-left md:table-fixed">
             <tbody>
                 <tr class="show-tr">
                     <th class="w-full show-th md:w-1/5">レベル</th>

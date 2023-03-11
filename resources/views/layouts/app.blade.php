@@ -33,15 +33,15 @@
         <!-- Page Content -->
         @if (session('successMessage'))
             <div class="text-center bg-green-300">
-                <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
+                <h1 class="text-lg text-green-700">{{ session('successMessage') }}</h1>
             </div>
         @endif
         <main class="w-full px-4 mx-auto">
-            <div class="block w-full lg:grid-cols-12 lg:grid py-14">
+            <div class="block w-full lg:px-4 lg:grid-cols-12 lg:grid py-14">
                 <div class="lg:col-span-9">
                     {{ $slot }}
                 </div>
-                <div class="block px-8 lg:col-span-3 lg:px-6">
+                <div class="block pl-8 lg:col-span-3 lg:px-6">
                     <x-search-form />
                 </div>
             </div>
