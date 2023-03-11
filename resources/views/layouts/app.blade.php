@@ -18,12 +18,14 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="flex flex-col min-h-screen font-sans antialiased bg-gray-100">
-        @include('layouts.navigation')
+    <body class="grid min-h-screen grid-cols-1 font-sans antialiased bg-gray-100">
+        <div class="sticky top-0 z-50">
+            @include('layouts.navigation')
+        </div>
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="bg-white shadow md:z-40 md:top-0 md:sticky">
+            <header class="bg-white shadow md:z-40">
                 <div class="px-4 py-6 mx-auto text-xl font-semibold leading-tight text-gray-800 max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -36,7 +38,7 @@
                 <h1 class="text-lg text-green-700">{{ session('successMessage') }}</h1>
             </div>
         @endif
-        <main class="w-full px-4 mx-auto">
+        <main class="w-full row-auto px-4 mx-auto">
             <div class="block w-full lg:px-4 lg:grid-cols-12 lg:grid py-14">
                 <div class="lg:col-span-9">
                     {{ $slot }}
