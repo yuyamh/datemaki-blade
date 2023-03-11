@@ -28,6 +28,7 @@
                     </p>
                 </div>
             </div>
+            {{-- ブックマーク済みであれば、印を表示 --}}
             @if (Auth::user()->is_bookmarked($post->id))
                 <span><i class="text-orange-400 fa-solid fa-bookmark"></i></i></span>
             @endif
