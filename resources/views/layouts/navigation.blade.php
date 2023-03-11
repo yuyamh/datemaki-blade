@@ -17,6 +17,7 @@
                 @if (Auth::check())
                     <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
                     <x-dropdown-link :href="route('myposts.index')">じぶんの教案</x-dropdown-link>
+                    <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                 @else
                     <x-dropdown-link :href="route('login')">ログイン</x-dropdown-link>
                     <x-dropdown-link :href="route('register')">会員登録</x-dropdown-link>
@@ -42,7 +43,6 @@
                         <x-slot name="content">
                             <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                             <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                            <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -68,6 +68,7 @@
                 @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
                 <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
+                <a href="{{ route('bookmarks') }}" class="nav-items{{ Request::routeIs('bookmarks') ? ' border-b-2 border-yellow-800' : ''}}">ブックマーク一覧</a>
                 <a href="{{ route('posts.create') }}" class="flex items-center px-2 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-2"><i class="fa-solid fa-pen"></i></span>
                     <span>投稿する</span>
@@ -79,7 +80,6 @@
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                         <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                        <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
