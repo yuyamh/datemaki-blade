@@ -36,7 +36,7 @@
                 <p class="text-lg text-green-700">{{ session('successMessage') }}</p>
             </div>
         @endif
-        <main class="flex-1 px-4 mx-auto">
+        <main class="w-full px-4 mx-auto">
             <div class="block w-full lg:grid-cols-12 lg:grid py-14">
                 <div class="lg:col-span-9">
                     {{ $slot }}
