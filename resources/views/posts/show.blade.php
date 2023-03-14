@@ -44,7 +44,7 @@
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">投稿者</th>
-                    <td class="show-td hover:underline"><a href="">{{ $post->user->name }}</a></td>
+                    <td class="show-td hover:underline"><a href="{{ route('users.show', $post->user->id) }}">{{ $post->user->name }}</a></td>
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">概要</th>
