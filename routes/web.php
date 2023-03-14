@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MyPostController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,6 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('/posts', PostController::class);
 Route::resource('/myposts', MyPostController::class)->only(['index']);
-
-// TODO:リソースルートをここのルートに変更する（storeの引数の関係で）
-// Route::resource('/bookmarks', BookmarkController::class)->only(['index', 'store', 'destroy']);
-
+Route::resource('/users', UserController::class)->only(['index', 'show']);
 
 require __DIR__.'/auth.php';
