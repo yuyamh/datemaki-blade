@@ -5,6 +5,7 @@ jobs:
       - image: cimg/php:8.2-browsers
     steps:
       - checkout
+      - run: cp .env.testing .env
       - run: sudo composer self-update --1
       - run: composer install -n --prefer-dist
       - run: npm ci
@@ -12,4 +13,3 @@ jobs:
       - run:
           name: php test
           command: vendor/bin/phpunit
-          
