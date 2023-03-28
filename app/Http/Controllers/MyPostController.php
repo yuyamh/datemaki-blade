@@ -14,7 +14,7 @@ class MyPostController extends Controller
      */
     public function index()
     {
-        $posts = \Auth::user()->posts()->latest()->paginate(20);
+        $posts = \Auth::user()->posts()->latest()->paginate(15);
         $data = ['posts' => $posts];
         return view('myposts.index', $data);
     }

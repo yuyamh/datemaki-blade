@@ -1,8 +1,8 @@
-<nav class="sticky top-0 z-50 flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
+<nav class="flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
     <div class="flex items-stretch w-full h-full">
         <div class="items-center hidden h-full md:mx-2 md:flex shrink-0">
             <a href="{{ route('posts.index') }}">
-                <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
+                <x-application-logo class="block w-auto text-gray-800 rounded-full fill-current h-9" />
             </a>
         </div>
         {{-- スマホ版レスポンシブメニュー --}}
@@ -17,6 +17,7 @@
                 @if (Auth::check())
                     <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
                     <x-dropdown-link :href="route('myposts.index')">じぶんの教案</x-dropdown-link>
+                    <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                 @else
                     <x-dropdown-link :href="route('login')">ログイン</x-dropdown-link>
                     <x-dropdown-link :href="route('register')">会員登録</x-dropdown-link>
@@ -28,23 +29,20 @@
                     <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
                 </a>
             </div>
-            <a href="#" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white drop-shadow-lg">だてまき</a>
+            <a href="{{ route('posts.index') }}" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white truncate drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
-                    <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="flex flex-col justify-center px-1 mx-1 my-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
-                        <i class="my-1 fa-solid fa-pen"></i>
-                        <div class="mx-2">投稿</div>
-                    </x-primary-button>
-                    <x-dropdown contentClasses="p-1 bg-white mr-2">
+                    <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-2 my-2 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 sm:m-2 sm:text-xs rounded-xl hover:scale-95 active:scale-90">
+                        <span><i class="fa-solid fa-pen"></i></span>
+                        <span>投稿</span>
+                    </a>
+                    <x-dropdown contentClasses="p-1 bg-white fmr-2">
                         <x-slot name="trigger">
-                            <x-primary-button class="m-2 text-lg bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800 hover:bg-yellow-200">
-                                <span><i class="fa-solid fa-user"></i></span>
-                            </x-primary-button>
+                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                         </x-slot>
                         <x-slot name="content">
                             <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                             <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                            <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -55,34 +53,39 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <x-primary-button onclick="location.href='#'" class="px-2 m-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
+                    <a href="#" class="flex items-center px-2 mx-2 my-1 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                         <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
                         <span>かんたんログイン</span>
-                    </x-primary-button>
+                    </a>
                 @endif
             </div>
         </div>
 
-        <a href="#" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
+        {{-- PC版レスポンシブメニュー --}}
+        <a href="{{ route('posts.index') }}" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
         <div class="hidden md:items-stretch md:flex-grow md:flex">
-            <div class="flex items-stretch justify-end ml-auto">
+            <div class="flex items-stretch justify-end pr-2 ml-auto">
                 @if (Auth::check())
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
                 <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
-                <x-primary-button onclick="location.href='{{ route('posts.create') }}'" class="m-3 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
+                <a href="{{ route('bookmarks') }}" class="nav-items{{ Request::routeIs('bookmarks') ? ' border-b-2 border-yellow-800' : ''}}">ブックマーク一覧</a>
+                <form action="{{ route('users.index') }}" method="GET">
+                    <div class="m-2">
+                        <input type="text" name="keyword" value="{{ Request::get('keyword') }}" placeholder="ユーザー検索" class="box-border border-gray-300 rounded-md shadow-sm w-15 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent" autocomplete=”off”>
+                        <button class="inline-flex items-center px-3 py-2 m-1 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-green-500 border rounded-lg border-gray-50 text-gray-50 md:py-3 focus:ring-0 active:scale-95 focus:outline-none hover:bg-green-400"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+                <a href="{{ route('posts.create') }}" class="flex items-center px-2 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-2"><i class="fa-solid fa-pen"></i></span>
                     <span>投稿する</span>
-                </x-primary-button>
+                </a>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                        <x-primary-button class="m-3 text-base bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800 hover:bg-yellow-200">
-                            <span><i class="fa-solid fa-user"></i></span>
-                        </x-primary-button>
+                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                     </x-slot>
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
                         <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                        <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
@@ -95,10 +98,10 @@
                 @else
                 <a href="{{ route('login') }}" class="nav-items">ログイン</a>
                 <a href="{{ route('register') }}" class="nav-items">会員登録</a>
-                <x-primary-button onclick="location.href='#'" class="m-2 bg-transparent border-yellow-800 rounded-lg hover:bg-yellow-200 hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800">
-                    <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
+                <a href="#" class="flex items-center px-2 mx-2 my-1 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
+                    <span class="mr-2"><i class="fa-solid fa-user-check"></i></span>
                     <span>かんたんログイン</span>
-                </x-primary-button>
+                </a>
                 @endif
             </div>
         </div>

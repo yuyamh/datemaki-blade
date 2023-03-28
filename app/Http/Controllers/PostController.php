@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Text;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -14,10 +16,45 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(20);
+        // 検索フォームに入力された値を取得
+        $keyword = $request->keyword;
+        $text_id = $request->text_id;
+        $level = $request->level;
+
+        $query = Post::latest();
+
+        // キーワードで検索をしたときだけ実行
+        if ($keyword)
+        {
+            $word = '%' . $keyword . '%';
+            $query->where(function ($q) use ($word)
+            {
+                $q->where('title', 'like', $word);
+                $q->orWhere('description', 'like', $word);
+            $q->orWhereHas('user', function ($u) use ($word)
+                {
+                    $u->where('name', 'like', $word);
+                });
+            });
+        }
+
+        // 使用テキストの検索があったとき実行
+        if ($text_id)
+        {
+            $query->where('text_id', $text_id);
+        }
+
+        // レベルの検索があったとき実行
+        if ($level)
+        {
+            $query->where('level', $level);
+        }
+
+        $posts = $query->paginate(15);
         $data = ['posts' => $posts];
+
         return view('posts.index', $data);
     }
 
@@ -29,8 +66,9 @@ class PostController extends Controller
     public function create()
     {
         $post = new Post();
-        $texts = Text::all();
-        return view('posts.create', ['post' => $post, 'texts' => $texts]);
+        $data = ['post' => $post];
+
+        return view('posts.create', $data);
     }
 
     /**
@@ -102,12 +140,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize($post);
-        $texts = Text::all();
 
         // アップロードファイルのパスを取得
         $filePath = Storage::url('files/' . $post->file_name);
 
-        return view('posts.edit', ['post' => $post, 'texts' => $texts, 'filePath' => $filePath]);
+        return view('posts.edit', ['post' => $post, 'filePath' => $filePath]);
     }
 
     /**
@@ -157,6 +194,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        dd($post->user->profile_photo_path);
         $this->authorize($post);
         $post->delete();
         // アップロードされたファイルの削除

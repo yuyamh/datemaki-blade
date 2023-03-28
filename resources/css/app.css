@@ -3,9 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  height: 100%;
-  box-sizing: border-box;
+html {
+    box-sizing: border-box;
 }
 
 .nav-items {
@@ -37,11 +36,19 @@ table.table-index td {
 }
 
 .form-input {
-    @apply w-full box-border border-gray-500 rounded-md shadow-md focus:border-transparent focus:ring-0 focus:border-orange-400 focus:border-2;
+    @apply w-full box-border border-gray-500 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent;
+}
+
+.form-input-search {
+    @apply w-full box-border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent;
 }
 
 .radio-label {
     @apply block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-orange-400 peer-checked:font-bold peer-checked:text-white;
+}
+
+.radio-level {
+    @apply block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-green-400 peer-checked:font-bold peer-checked:text-white;
 }
 
 .drop-buttons {
