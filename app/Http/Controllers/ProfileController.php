@@ -55,14 +55,14 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
+        
+        // ユーザーが設定したプロフィールアイコン画像の削除
+        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_photo_path))
+        {
+            \Storage::disk('public')->delete($user->profile_photo_path);
+        }
 
         $user->delete();
-
-        // ユーザーが設定したプロフィールアイコン画像の削除
-        if (\Storage::disk('public')->exists('profile_icons')) {
-            \Storage::disk('public')->delete($user->profile_photo_path);
-
-        }
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
