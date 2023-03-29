@@ -5,8 +5,7 @@ jobs:
       - image: cimg/php:8.2-browsers
     steps:
       - checkout
-      - run: cp .env.testing .env
-      - run: sudo composer self-update --1
+      - run: sudo composer self-update --2
       - run: composer install -n --prefer-dist
       - run: npm ci
       - run: LARAVEL_BYPASS_ENV_CHECK=1 npm run build
