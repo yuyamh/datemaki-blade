@@ -4,4 +4,11 @@ jobs:
     docker:
       - image: cimg/php:8.2-browsers
     steps:
-      - run: echo "Hello World"
+      - checkout
+      - run: sudo composer self-update --2
+      - run: composer install -n --prefer-dist
+      - run: npm ci
+      - run: LARAVEL_BYPASS_ENV_CHECK=1 npm run build
+      - run:
+          name: php test
+          command: vendor/bin/phpunit

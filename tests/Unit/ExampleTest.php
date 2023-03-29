@@ -7,11 +7,11 @@ use PHPUnit\Framework\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * trueを返すだけのテスト
      *
      * @return void
      */
-    public function test_that_true_is_true()
+    public function testExample()
     {
         $this->assertTrue(true);
     }
