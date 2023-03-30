@@ -15,7 +15,7 @@ class AuthenticationTest extends TestCase
     {
         $response = $this->get('/login');
 
-        $response->assertStatus(200);
+        $response->assertStatus(400);
     }
 
     public function test_users_can_authenticate_using_the_login_screen(): void
@@ -37,7 +37,7 @@ class AuthenticationTest extends TestCase
 
         $this->post('/login', [
             'email' => $user->email,
-            'password' => 'wrong-passwor',
+            'password' => 'wrong-password',
         ]);
 
         $this->assertGuest();
