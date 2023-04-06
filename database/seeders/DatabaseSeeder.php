@@ -23,7 +23,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TextSeeder::class,
-            DummyDataSeeder::class,
         ]);
+
+        //開発環境の時にのみ実行するseeding。
+        if (App::environment('local'))
+        {
+            $this->call([DummyDataSeeder::class, //ダミーデータの作成
+            ]);
+        }
     }
 }
