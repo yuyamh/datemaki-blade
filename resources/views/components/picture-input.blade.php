@@ -1,9 +1,9 @@
 <div class="flex mb-4" x-data="picturePreview()">
     <div class="mr-3">
+        {{-- TODO:imgタグ自体をenvによって分岐させるのか？ --}}
         <img
              id="preview"
-             src="{{ isset(Auth::user()->profile_photo_path) ? asset('storage/' . Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}"
-             alt=""
+             src="{{ isset(Auth::user()->profile_photo_path) ? asset(Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}"
              class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full">
     </div>
     <div class="flex items-center">
