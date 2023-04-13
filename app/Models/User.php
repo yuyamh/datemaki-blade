@@ -34,6 +34,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = ['image_url'];
+
     /**
      * The attributes that should be cast.
      *
@@ -62,4 +64,11 @@ class User extends Authenticatable
     {
         return $this->bookmarks()->where('post_id', $postId)->exists();
     }
+
+    // プロフ画像用のアクセサ
+    public function getImageUrlAttribute()
+    {
+        return \Storage::url('profile_icons/' . $this->profile_image);
+    }
+
 }
