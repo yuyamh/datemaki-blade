@@ -27,7 +27,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         // 古いプロフ画像を取得
-        $oldIconPath = $request->user()->profile_photo_path;
+        $oldIconPath = $request->user()->profile_image;
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email'))
@@ -43,14 +43,14 @@ class ProfileController extends Controller
                 // 開発環境
                 \Storage::disk('public')->delete($oldIconPath); // 古いプロフ画像を削除
                 $path = $request->file('picture')->store('profile_icons', 'public');
-                // $request->user()->profile_photo_path = \Storage::url($path);
-                $request->user()->profile_photo_path = $path;
+                // $request->user()->profile_image = \Storage::url($path);
+                $request->user()->profile_image = $path;
             } else
             {
                 // 本番環境
                 // TODO:ここにStorage::delete処理？
                 $path = \Storage::disk('s3')->put('/profile_icons', $request->file('picture'), 'public');
-                $request->user()->profile_photo_path = \Storage::disk('s3')->url($path);
+                $request->user()->profile_image = \Storage::disk('s3')->url($path);
             }
        }
 
@@ -75,9 +75,9 @@ class ProfileController extends Controller
         Auth::logout();
 
         // ユーザーが設定したプロフィールアイコン画像の削除
-        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_photo_path))
+        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_image))
         {
-            \Storage::disk('public')->delete($user->profile_photo_path);
+            \Storage::disk('public')->delete($user->profile_image);
         }
 
         $user->delete();

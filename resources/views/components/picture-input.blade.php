@@ -3,7 +3,7 @@
         {{-- TODO:imgタグ自体をenvによって分岐させるのか？ --}}
         <img
              id="preview"
-             src="{{ isset(Auth::user()->profile_photo_path) ? asset(Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}"
+             src="{{ isset(Auth::user()->profile_image) ? asset(Auth::user()->profile_image) : asset('images/user_icon.png') }}"
              class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full">
     </div>
     <div class="flex items-center">
