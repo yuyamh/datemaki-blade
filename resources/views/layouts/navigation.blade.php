@@ -38,7 +38,7 @@
                     </a>
                     <x-dropdown contentClasses="p-1 bg-white fmr-2">
                         <x-slot name="trigger">
-                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset(Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                            <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->profile_image : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                         </x-slot>
                         <x-slot name="content">
                             <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
@@ -81,7 +81,8 @@
                 </a>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                            <img src="{{ isset(Auth::user()->profile_photo_path) ? asset(Auth::user()->profile_photo_path) : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                            {{-- {{ dd(Auth::user()->image_url) }} --}}
+                            <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                     </x-slot>
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>

@@ -26,8 +26,6 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // 古いプロフ画像を取得
-        $oldIconPath = $request->user()->profile_photo_path;
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email'))
@@ -35,26 +33,24 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-       $path = null;
-       if ($request->hasFile('picture'))
+       if ($request->hasFile('image'))
        {
-            if (app()->isLocal() || app()->runningUnitTests())
-            {
-                // 開発環境
-                \Storage::disk('public')->delete($oldIconPath); // 古いプロフ画像を削除
-                $path = $request->file('picture')->store('profile_icons', 'public');
-                // $request->user()->profile_photo_path = \Storage::url($path);
-                $request->user()->profile_photo_path = $path;
-            } else
-            {
-                // 本番環境
-                // TODO:ここにStorage::delete処理？
-                $path = \Storage::disk('s3')->put('/profile_icons', $request->file('picture'), 'public');
-                $request->user()->profile_photo_path = \Storage::disk('s3')->url($path);
-            }
-       }
+            // プロフィール画像ファイルの保存
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . "." . $ext;
+            $file->storeAs('public/profile_icons', $filename);
 
-    //    TODO:プロフ更新時に、古いプロフ画像を削除する処理を書く必要あり。
+            // 古いプロフィール画像を削除
+            \Storage::delete('public/profile_icons/' . $request->user()->profile_image);
+            // ↑この指定だとうまく削除できます。
+
+            // \Storage::delete($request->user()->image_url);
+            // この書き方だとなぜ削除されないのかわかりませんでした。
+
+            // 投稿内容をDBに保存
+            $request->user()->profile_image = $filename;
+       }
 
         $request->user()->save();
 
@@ -74,10 +70,10 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        // ユーザーが設定したプロフィールアイコン画像の削除
-        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_photo_path))
+        // ユーザーが設定したプロフィールアイコン画像の削除 TODO:修正する必要あり
+        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_image))
         {
-            \Storage::disk('public')->delete($user->profile_photo_path);
+            \Storage::disk('public')->delete($user->profile_image);
         }
 
         $user->delete();

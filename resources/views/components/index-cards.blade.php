@@ -14,7 +14,7 @@
     <div class="flex flex-col items-start justify-center w-full p-3 bg-white rounded-lg cursor-pointer hover:duration-200 sahdow-lg card hover:scale-95 hover:transition-all hover:bg-yellow-50" data-href="{{ route('posts.show', $post) }}">
         <div class="flex items-start justify-between w-full">
             <div class="flex justify-start w-full mb-4">
-                <img class="w-12 h-12 bg-gray-200 rounded-full" src="{{ isset($post->user->profile_photo_path) ? asset('storage/' . $post->user->profile_photo_path) : asset('images/user_icon.png') }}" alt="photo">
+                <img class="w-12 h-12 bg-gray-200 rounded-full" src="{{ isset($post->user->profile_image) ? $post->user->image_url : asset('images/user_icon.png') }}" alt="photo">
                 <div class="ml-2 truncate">
                     <p class="text-sm text-gray-500 truncate">{{ $post->user->name }}</p>
                     <p class="mb-2 text-xl font-bold text-gray-600 truncate">{{ $post->title }}</p>
