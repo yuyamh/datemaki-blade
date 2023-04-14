@@ -68,7 +68,7 @@ class User extends Authenticatable
     // プロフ画像用のアクセサ
     public function getImageUrlAttribute()
     {
-        return \Storage::url('profile_icons/' . $this->profile_image);
+        return \Storage::url('public/profile_icons/' . $this->profile_image);
     }
 
 }
