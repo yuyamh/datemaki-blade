@@ -42,11 +42,10 @@ class ProfileController extends Controller
             $file->storeAs('public/profile_icons', $filename);
 
             // 古いプロフィール画像を削除
-            \Storage::delete('public/profile_icons/' . $request->user()->profile_image);
-            // ↑この指定だとうまく削除できます。
-
-            // \Storage::delete($request->user()->image_url);
-            // この書き方だとなぜ削除されないのかわかりませんでした。
+            if (isset($request->user()->profile_image))
+            {
+                \Storage::delete('public/profile_icons/' . $request->user()->profile_image);
+            }
 
             // 投稿内容をDBに保存
             $request->user()->profile_image = $filename;
@@ -70,10 +69,10 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        // ユーザーが設定したプロフィールアイコン画像の削除 TODO:修正する必要あり
-        if (\Storage::disk('public')->exists('profile_icons') && !is_null($user->profile_image))
+        // ユーザーが設定したプロフィールアイコン画像の削除
+        if ((\Storage::exists('public/profile_icons')) && !is_null($user->profile_image))
         {
-            \Storage::disk('public')->delete($user->profile_image);
+            \Storage::delete('public/profile_icons/' . $user->profile_image);
         }
 
         $user->delete();

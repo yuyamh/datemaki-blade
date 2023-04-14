@@ -81,7 +81,6 @@
                 </a>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                            {{-- {{ dd(Auth::user()->image_url) }} --}}
                             <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
                     </x-slot>
                     <x-slot name="content">
