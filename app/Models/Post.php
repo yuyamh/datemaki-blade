@@ -25,6 +25,8 @@ class Post extends Model
         'text_id',
     ];
 
+    protected $appends = ['file_url'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -33,5 +35,11 @@ class Post extends Model
     public function text()
     {
         return $this->belongsTo(Text::class);
+    }
+
+    // アップロードされた教案ファイルのアクセサ
+    public function getFileUrlAttribute()
+    {
+        return \Storage::url('public/files/' . $this->file_name);
     }
 }

@@ -55,7 +55,7 @@
     @if (isset($post->file_name))
         <div class="flex my-2 ml-2 text-sm">
             <p class="mr-4">現在のファイル&nbsp;:&nbsp;{{ $post->file_name}}</p>
-            <p><a href="{{ $filePath }}" class="underline hover:text-gray-600">表示</a></p>
+            <p><a href="{{ $post->file_url }}" class="underline hover:text-gray-600">表示</a></p>
         </div>
     @endif
     <input type="file" name="file_name" id="file" class="my-1">
