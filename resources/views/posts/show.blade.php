@@ -52,7 +52,7 @@
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">添付ファイル</th>
-                    <td class="show-td hover:underline"><a href="{{ $post->file_url }}">{{ $post->file_name }}</a></td>
+                    <td class="show-td hover:underline"><a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer">{{ $post->file_name }}</a></td>
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">ファイルサイズ</th>
