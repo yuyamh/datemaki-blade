@@ -81,7 +81,7 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        // ファイルの保存
+        // ファイルをストレージへ保存
         $file = $validated['file_name'];
         $ext  = $file->getClientOriginalextension();
         $fileName = time() . '.' . $ext;
@@ -110,9 +110,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // アップロードファイルのパスを取得
-        $filePath = Storage::url('files/' . $post->file_name);
-
         // アップロードファイルのサイズをKB, MBへ変換
         $kilobyte = 1024;
         $megabyte = $kilobyte * 1000;
@@ -128,7 +125,8 @@ class PostController extends Controller
             $post->file_size = $post->file_size . 'B';
         }
 
-        return view('posts.show', ['post' => $post, 'filePath' => $filePath]);
+        $data = ['post' => $post];
+        return view('posts.show', $data);
     }
 
     /**
@@ -141,10 +139,8 @@ class PostController extends Controller
     {
         $this->authorize($post);
 
-        // アップロードファイルのパスを取得
-        $filePath = Storage::url('files/' . $post->file_name);
-
-        return view('posts.edit', ['post' => $post, 'filePath' => $filePath]);
+        $data = ['post' => $post];
+        return view('posts.edit', $data);
     }
 
     /**
@@ -163,7 +159,7 @@ class PostController extends Controller
         if (isset($validated['file_name']))
         {
             // 元ファイルの削除
-            \Storage::disk('public')->delete('files/' . $post->file_name);
+            \Storage::delete('public/files/' . $post->file_name);
 
             // 新ファイルの保存
             $file = $validated['file_name'];
@@ -194,11 +190,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        dd($post->user->profile_photo_path);
         $this->authorize($post);
         $post->delete();
         // アップロードされたファイルの削除
-        \Storage::disk('public')->delete('files/' . $post->file_name);
+        \Storage::delete('public/files/' . $post->file_name);
 
         return redirect(route('myposts.index'))->with('successMessage', '教案を削除しました。');
 
