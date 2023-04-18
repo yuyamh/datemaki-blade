@@ -110,23 +110,31 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // アップロードファイルのサイズをKB, MBへ変換
-        $kilobyte = 1024;
-        $megabyte = $kilobyte * 1000;
+        if (\Auth::check())
+        {
+            // ログインしている場合は、表示処理を行う
+            // アップロードファイルのサイズをKB, MBへ変換
+            $kilobyte = 1024;
+            $megabyte = $kilobyte * 1000;
 
-        if ($megabyte <= $post->file_size)
-        {
-            $post->file_size = round($post->file_size / $megabyte, 2) . 'MB';
-        } elseif ($kilobyte <= $post->file_size)
-        {
-            $post->file_size = round($post->file_size / $kilobyte, 2) . 'KB';
+            if ($megabyte <= $post->file_size)
+            {
+                $post->file_size = round($post->file_size / $megabyte, 2) . 'MB';
+            } elseif ($kilobyte <= $post->file_size)
+            {
+                $post->file_size = round($post->file_size / $kilobyte, 2) . 'KB';
+            } else
+            {
+                $post->file_size = $post->file_size . 'B';
+            }
+
+            $data = ['post' => $post];
+            return view('posts.show', $data);
         } else
         {
-            $post->file_size = $post->file_size . 'B';
+            // ログインしていない場合は、ログインページへリダイレクトする
+            return redirect()->route('login');
         }
-
-        $data = ['post' => $post];
-        return view('posts.show', $data);
     }
 
     /**
