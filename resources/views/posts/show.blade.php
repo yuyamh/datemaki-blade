@@ -5,7 +5,7 @@
         <div class="flex items-center justify-between mb-5">
             <h1 class="w-2/3 pl-1 text-2xl truncate lg:text-3xl lg:w-4/5">{{ $post->title }}</h1>
             {{-- 自分の投稿にはブックマークボタンを表示しない --}}
-            @if ($post->user_id !== Auth::id())
+            @if (Auth::check() && $post->user_id !== Auth::id())
             <div class="flex content-center">
                 @if (!Auth::user()->is_bookmarked($post->id))
                 <form action="{{ route('bookmarks.store', $post) }}" method="POST" class="flex content-center">
