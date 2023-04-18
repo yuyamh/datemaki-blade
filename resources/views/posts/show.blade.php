@@ -5,9 +5,9 @@
         <div class="flex items-center justify-between mb-5">
             <h1 class="w-2/3 pl-1 text-2xl truncate lg:text-3xl lg:w-4/5">{{ $post->title }}</h1>
             {{-- 自分の投稿にはブックマークボタンを表示しない --}}
-            @if (Auth::check() && $post->user_id !== Auth::id())
+            @if ($post->user_id !== Auth::id())
             <div class="flex content-center">
-                @if (!Auth::user()->is_bookmarked($post->id))
+                @if (Auth::check() && !Auth::user()->is_bookmarked($post->id))
                 <form action="{{ route('bookmarks.store', $post) }}" method="POST" class="flex content-center">
                     @csrf
                     <button  class="inline-flex items-center px-4 py-4 m-1 text-xs font-semibold tracking-widest text-gray-600 uppercase transition duration-150 ease-in-out bg-transparent border border-gray-500 md:py-3 rounded-xl md:rounded-2xl focus:bg-transparent focus:ring-0 active:bg-transparent focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400 focus:outline-none focus:ring-offset-2">
