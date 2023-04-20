@@ -1,5 +1,5 @@
-<div class="flex w-full pb-2 mb-5 text-xl border-b border-gray-300">
-    <span class="mr-2"><i class="fa-solid fa-magnifying-glass"></i></span>
+<div class="flex w-full py-2 mb-5 text-xl border-b border-green-500">
+    <span class="mr-3"><i class="fa-solid fa-book" style="color: #22c55e;"></i></span>
     <h1>教案検索</h1>
 </div>
 <form action="{{ route('posts.index') }}" method="GET">
@@ -50,18 +50,31 @@
     <div class="text-center">
         <x-primary-button type="submit" class="bg-green-500 shadow-md hover:bg-green-400 hover:scale-95 active:scale-90 active:ring-offset-0 focus:ring-offset-0 active:bg-green-400 focus:bg-green-400 focus:ring-transparent">検索</x-primary-button>
     </div>
-    <script>
-        const radioBtns = document.querySelectorAll('.input-search');
-        let prevRadio = null;
-        radioBtns.forEach((radioBtn) => {
-            radioBtn.addEventListener('click', () => {
-                if (prevRadio === radioBtn && radioBtn.checked) {
-                    radioBtn.checked = false;
-                    prevRadio = null;
-                } else {
-                    prevRadio = radioBtn;
-                }
-            });
-        });
-    </script>
 </form>
+<div class="flex w-full py-2 mt-12 mb-5 text-xl border-b border-rose-400">
+    <span class="mr-3"><i class="fa-solid fa-user" style="color: #fb7185;"></i></span>
+    <h1>ユーザー検索</h1>
+</div>
+<form action="{{ route('users.index') }}" method="GET">
+    <div class="form-group">
+        <label for="user_name_keyword" class="block text-lg">ユーザー名</label>
+        <input type="text" id="user_name_keyword" name="user_name_keyword" value="{{ Request::get('user_name_keyword') }}" placeholder="Search" class="form-input-search focus:ring-rose-300" autocomplete=”off”>
+    </div>
+    <div class="text-center">
+        <x-primary-button type="submit" class="shadow-md bg-rose-400 hover:bg-rose-300 hover:scale-95 active:scale-90 active:ring-offset-0 focus:ring-offset-0 active:bg-rose-300 focus:bg-rose-300 focus:ring-transparent">検索</x-primary-button>
+    </div>
+</form>
+<script>
+    const radioBtns = document.querySelectorAll('.input-search');
+    let prevRadio = null;
+    radioBtns.forEach((radioBtn) => {
+        radioBtn.addEventListener('click', () => {
+            if (prevRadio === radioBtn && radioBtn.checked) {
+                radioBtn.checked = false;
+                prevRadio = null;
+            } else {
+                prevRadio = radioBtn;
+            }
+        });
+    });
+</script>

@@ -69,12 +69,6 @@
                 <a href="{{ route('posts.index') }}" class="nav-items{{ Request::routeIs('posts.index') ? ' border-b-2 border-yellow-800' : ''}}">みんなの教案</a>
                 <a href="{{ route('myposts.index') }}" class="nav-items{{ Request::routeIs('myposts.index') ? ' border-b-2 border-yellow-800' : ''}}">じぶんの教案</a>
                 <a href="{{ route('bookmarks') }}" class="nav-items{{ Request::routeIs('bookmarks') ? ' border-b-2 border-yellow-800' : ''}}">ブックマーク一覧</a>
-                <form action="{{ route('users.index') }}" method="GET">
-                    <div class="m-2">
-                        <input type="text" name="keyword" value="{{ Request::get('keyword') }}" placeholder="ユーザー検索" class="box-border border-gray-300 rounded-md shadow-sm w-15 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent" autocomplete=”off”>
-                        <button class="inline-flex items-center px-3 py-2 m-1 text-xs font-semibold tracking-widest uppercase transition duration-150 ease-in-out bg-green-500 border rounded-lg border-gray-50 text-gray-50 md:py-3 focus:ring-0 active:scale-95 focus:outline-none hover:bg-green-400"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
                 <a href="{{ route('posts.create') }}" class="flex items-center px-2 m-2 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-2"><i class="fa-solid fa-pen"></i></span>
                     <span>投稿する</span>
