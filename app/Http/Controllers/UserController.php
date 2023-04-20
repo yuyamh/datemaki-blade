@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         // ユーザー検索
         // 検索フォームに入力された値を取得
-        $keyword = $request->keyword;
+        $keyword = $request->user_name_keyword;
 
         $query = User::latest();
 
