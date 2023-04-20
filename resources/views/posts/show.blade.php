@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
     <x-slot name="title">教案詳細</x-slot>
-    <div class="w-full md:pb-16">
+    <div class="w-full pb-16">
         <div class="flex items-center justify-between mb-5">
             <h1 class="w-2/3 pl-1 text-2xl truncate lg:text-3xl lg:w-4/5">{{ $post->title }}</h1>
             {{-- 自分の投稿にはブックマークボタンを表示しない --}}
@@ -10,18 +10,16 @@
                 @if (Auth::check() && !Auth::user()->is_bookmarked($post->id))
                 <form action="{{ route('bookmarks.store', $post) }}" method="POST" class="flex content-center">
                     @csrf
-                    <button  class="inline-flex items-center px-4 py-4 m-1 text-xs font-semibold tracking-widest text-gray-600 uppercase transition duration-150 ease-in-out bg-transparent border border-gray-500 md:py-3 rounded-xl md:rounded-2xl focus:bg-transparent focus:ring-0 active:bg-transparent focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400 focus:outline-none focus:ring-offset-2">
-                        <i class="md:mr-1 fa-regular fa-bookmark fa-lg"></i>
-                        <p class="hidden md:block">ブックマーク</p>
+                    <button class="inline-flex items-center mr-4 text-2xl tracking-widest text-gray-500 transition duration-150 ease-in-out md:text-4xl hover:scale-95 active:scale-90">
+                        <i class="fa-regular fa-bookmark"></i>
                     </button>
                 </form>
                 @else
                 <form action="{{ route('bookmarks.destroy', $post) }}" method="POST" class="flex content-center">
                     @csrf
                     @method('DELETE')
-                    <button  class="inline-flex items-center px-4 py-4 m-1 text-xs font-semibold tracking-widest text-gray-600 uppercase transition duration-150 ease-in-out bg-orange-200 border border-gray-500 md:rounded-2xl hover:bg-orange-200 focus:bg-orange-200 focus:ring-0 active:bg-orange-200 focus:text-gray-400 hover:scale-95 active:scale-90 focus:border-gray-400 md:py-3 rounded-xl active:bg-transparent focus:outline-none focus:ring-offset-2">
-                        <i class="md:mr-1 fa-regular fa-bookmark fa-lg"></i>
-                        <p class="hidden md:block">ブックマーク済</p>
+                    <button class="inline-flex items-center mr-4 text-2xl tracking-widest transition duration-150 ease-in-out md:text-4xl hover:scale-95 active:scale-90">
+                        <i class="fa-solid fa-bookmark" style="color: #fb923c;"></i>
                     </button>
                 </form>
                 @endif

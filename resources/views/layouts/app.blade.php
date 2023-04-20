@@ -43,7 +43,7 @@
                 <div class="lg:col-span-9">
                     {{ $slot }}
                 </div>
-                <div class="block pl-8 lg:col-span-3 lg:px-6">
+                <div class="block px-6 lg:col-span-3">
                     <x-search-form />
                 </div>
             </div>
