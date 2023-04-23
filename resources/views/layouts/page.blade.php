@@ -34,7 +34,7 @@
 
         <!-- Page Content -->
         <main class="w-full row-auto">
-            <div class="block max-w-4xl p-10 mx-auto text-lg bg-white rounded-md shadow-md md:w-3/4 my-14">
+            <div class="block max-w-5xl p-10 mx-auto text-lg bg-white rounded-md shadow-md md:w-3/4 my-14">
                 <h1 class="pb-2 text-2xl font-bold border-b border-gray-300 mb-7">{{ $title }}</h1>
                 {{ $slot }}
             </div>

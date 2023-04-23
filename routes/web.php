@@ -29,6 +29,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/page/terms', [PageController::class, 'terms'])->name('page.terms');
 Route::get('/page/policy', [PageController::class, 'policy'])->name('page.policy');
+Route::get('/page/contact', [PageController::class, 'contact'])->name('page.contact');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
