@@ -9,7 +9,7 @@
                 <img src="{{ asset('images/datemaki_logo2.png') }}" alt="ロゴ" width="300" height="300" class="inline-block">
             </div>
             <div class="my-5 text-center">
-                <button class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-orange-400 uppercase transition duration-150 ease-in-out border border-gray-400 rounded-md hover:text-orange-300 hover:border-gray-300 focus:text-orange-300 active:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-95 active:scale-90">
+                <button class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-orange-400 uppercase transition duration-150 ease-in-out border border-gray-300 rounded-md shadow-sm hover:text-orange-300 hover:border-gray-200 focus:text-orange-300 active:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-95 active:scale-90">
                     <a href="https://twitter.com/Mnsr_3" target="_blank" rel="noopener noreferrer">
                         <span><i class="fa-solid fa-envelope"></i></span>
                         <span>メッセージ</span>
