@@ -28,6 +28,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/page/terms', [PageController::class, 'terms'])->name('page.terms');
+Route::get('/page/policy', [PageController::class, 'policy'])->name('page.policy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

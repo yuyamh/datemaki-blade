@@ -10,4 +10,9 @@ class PageController extends Controller
     {
         return view('page.terms');
     }
+
+    public function policy()
+    {
+        return view('page.policy');
+    }
 }
