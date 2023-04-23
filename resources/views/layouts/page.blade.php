@@ -33,19 +33,10 @@
         @endif
 
         <!-- Page Content -->
-        @if (session('successMessage'))
-            <div class="text-center bg-green-300">
-                <h1 class="text-lg text-green-700">{{ session('successMessage') }}</h1>
-            </div>
-        @endif
-        <main class="w-full row-auto px-4 mx-auto">
-            <div class="block w-full lg:px-4 lg:grid-cols-12 lg:grid py-14">
-                <div class="lg:col-span-9">
-                    {{ $slot }}
-                </div>
-                <div class="block px-6 lg:col-span-3">
-                    <x-search-form />
-                </div>
+        <main class="w-full row-auto">
+            <div class="block max-w-5xl p-10 mx-auto text-lg bg-white rounded-md shadow-md md:w-3/4 my-14">
+                <h1 class="pb-2 text-2xl font-bold border-b border-gray-300 mb-7">{{ $title }}</h1>
+                {{ $slot }}
             </div>
         </main>
         <x-footer class="sticky bottom-0"/>
