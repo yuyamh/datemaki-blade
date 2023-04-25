@@ -8,6 +8,12 @@
 
     <div>
         <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+            {{-- ゲストユーザーの場合は、アイコン、名前、メールアドレスを変更できない --}}
+            @if (Auth::id() == 1)
+                <div class="p-4 bg-red-100 shadow sm:p-8 sm:rounded-lg">
+                    <p class="text-red-600">※ゲストユーザーは、ユーザー情報を変更・削除できません。</p>
+                </div>
+            @endif
             <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
