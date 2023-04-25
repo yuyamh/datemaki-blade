@@ -34,12 +34,13 @@
 
         <!-- Page Content -->
         @if (session('successMessage'))
-            <div class="text-center bg-green-300">
-                <h1 class="text-lg text-green-700">{{ session('successMessage') }}</h1>
+            <div class="p-4 m-3 bg-green-100 shadow md:w-4/5 sm:w-full sm:rounded-lg">
+                <p class="text-green-700 ">{{ session('successMessage') }}</p>
             </div>
         @endif
+
         <main class="w-full row-auto px-4 mx-auto">
-            <div class="block w-full lg:px-4 lg:grid-cols-12 lg:grid py-14">
+            <div class="block w-full py-12 lg:px-4 lg:grid-cols-12 lg:grid">
                 <div class="lg:col-span-9">
                     {{ $slot }}
                 </div>

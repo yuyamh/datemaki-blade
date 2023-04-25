@@ -13,12 +13,22 @@ class ProfileUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
+
+    private const GUEST_USER_ID = 1;
+
     public function rules(): array
     {
-        return [
-            'name' => ['string', 'max:255'],
-            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'picture' => ['file', 'mimes:gif,png,jpg,webp', 'max:3072'],
-        ];
+        // ゲストユーザー以外がログインしている時だけ、全てのユーザー情報をバリデーションにかける
+        if (\Auth::id() != self::GUEST_USER_ID)
+        {
+            return [
+                'name' => ['string', 'max:255'],
+                'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+                'image' => ['file', 'mimes:gif,png,jpg,webp', 'max:3072'],
+            ];
+        } else
+        {
+            return [];
+        }
     }
 }

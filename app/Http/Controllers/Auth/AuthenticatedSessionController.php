@@ -45,4 +45,20 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    // ゲストユーザー用のユーザーIDを定数として定義
+    private const GUEST_USER_ID = 1;
+
+    /**
+     * ゲストユーザーとしてかんたんログインする。
+     */
+    public function guestLogin()
+    {
+        // id=1 のゲストユーザー情報がDBに存在すれば、ゲストとしてログインする
+        if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+            return redirect()->route('posts.index')->with('successMessage', 'ゲストユーザーとしてログインしました。');
+        }
+
+        return redirect('/');
+    }
 }

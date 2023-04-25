@@ -9,10 +9,19 @@
         </p>
     </header>
 
-    <x-danger-button
-        x-data=""
-        x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    {{-- ゲストユーザーの場合はアカウント削除できない --}}
+    @if ($user->id == 1)
+        <button
+        disabled
+         class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white bg-gray-500 rounded-md"
+        >{{ __('Delete Account') }}</button>
+        <p class="text-xs text-red-500">※削除不可</p>
+    @else
+        <x-danger-button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+        >{{ __('Delete Account') }}</x-danger-button>
+    @endif
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" fosable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">

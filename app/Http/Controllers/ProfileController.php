@@ -51,6 +51,7 @@ class ProfileController extends Controller
             $request->user()->profile_image = $filename;
        }
 
+       // バリデーションにかけた値だけをDBに保存（ゲストユーザーの情報は更新されない）
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

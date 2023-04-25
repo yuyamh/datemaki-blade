@@ -17,21 +17,36 @@
         @csrf
         @method('patch')
 
+        {{-- アイコン変更、ゲストユーザーの場合は変更不可 --}}
         <div>
            <x-picture-input />
            <x-input-error class="mt-2" :messages="$errors->get('picture')" />
         </div>
 
+        {{-- 名前変更、ゲストユーザーの場合は変更不可 --}}
         <div>
+            @if ($user->id == 1)
+            <x-input-label for="name" :value="__('Name')" />
+            <x-text-input id="name" name="name" type="text" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" :value="$user->name" readonly disabled />
+            <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @else
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            @endif
         </div>
 
+        {{-- メールアドレス変更、ゲストユーザーの場合は変更不可--}}
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="block w-full mt-1 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-400" :value="old('email', $user->email)" required autocomplete="email" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            @if ($user->id == 1)
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" name="email" type="email" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" :value="$user->email" readonly disabled />
+                <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @else
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" name="email" type="email" class="block w-full mt-1 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-orange-400" :value="old('email', $user->email)" required autocomplete="email" />
+                <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            @endif
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -53,7 +68,9 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button class="focus:ring-orange-400">{{ __('Save') }}</x-primary-button>
+            @if ($user->id != 1)
+                <x-primary-button class="focus:ring-orange-400">{{ __('Save') }}</x-primary-button>
+            @endif
 
             @if (session('status') === 'profile-updated')
                 <p
