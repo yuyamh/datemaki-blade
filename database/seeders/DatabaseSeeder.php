@@ -16,21 +16,44 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // storage/app/public/fileディレクトリと、その中身の全削除
-        if (Storage::exists('public/files'))
+        // // storage/app/public/fileディレクトリと、その中身の全削除
+        // if (Storage::exists('public/files'))
+        // {
+        //     Storage::deleteDirectory('public/files');
+        // }
+
+        // // アップロードされたプロフィール画像を全削除
+        // if (Storage::exists('public/profile_icons'))
+        // {
+        //     Storage::deleteDirectory('public/profile_icons');
+        // }
+
+        if (app()->isLocal() || app()->runningUnitTests())
         {
-            Storage::deleteDirectory('public/files');
+            // storage/app/public/fileディレクトリと、その中身の全削除
+            if (Storage::disk('public')->exists('files'))
+            {
+                Storage::deleteDirectory('public/files');
+            }
+
+            // アップロードされたプロフィール画像を全削除
+            if (Storage::disk('public')->exists('profile_icons'))
+            {
+                Storage::deleteDirectory('public/profile_icons');
+            }
+        } else
+        {
+            // S3のfileディレクトリと、その中身の全削除
+            if (Storage::disk('s3')->exists('files')) {
+                Storage::deleteDirectory('public/files');
+            }
+
+            // アップロードされたプロフィール画像を全削除
+            if (Storage::disk('s3')->exists('profile_icons')) {
+                Storage::deleteDirectory('public/profile_icons');
+            }
         }
 
-        // アップロードされたプロフィール画像を全削除
-        if (Storage::exists('public/profile_icons'))
-        {
-            Storage::deleteDirectory('public/profile_icons');
-        }
-
-        // TODO:ローカルと本番環境で、リフレッシュ時下記のディレクトリごと削除したい。（現状S3で削除できない）
-        // public/files
-        // public/profile_icons
 
         // テキストとゲストユーザーのseeding実行
         $this->call([
