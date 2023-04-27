@@ -18,15 +18,16 @@ class DummyDataSeeder extends Seeder
     public function run()
     {
         User::factory()->count(3)->create();
+        // 元々こっちで削除処理を書いていたが、このファイルはローカルのみで実行されるため、DatabaseSeederへ移動させた。
         // storage/app/public/fileディレクトリと、その中身の全削除
-        if (Storage::disk('public')->exists('files')) {
-            Storage::deleteDirectory('public/files');
-        }
+        // if (Storage::disk('public')->exists('files')) {
+        //     Storage::deleteDirectory('public/files');
+        // }
 
-        // アップロードされたプロフィール画像を全削除
-        if (Storage::disk('public')->exists('profile_icons')) {
-            Storage::deleteDirectory('public/profile_icons');
-        }
+        // // アップロードされたプロフィール画像を全削除
+        // if (Storage::disk('public')->exists('profile_icons')) {
+        //     Storage::deleteDirectory('public/profile_icons');
+        // }
 
         Post::factory()->count(240)->create();
     }
