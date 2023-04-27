@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class GuestUserSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,9 @@ class GuestUserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'ゲストユーザー',
-            'email' => 'guest@guest.com',
-            'role' => 'guest',
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'role' => 'admin',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ]);

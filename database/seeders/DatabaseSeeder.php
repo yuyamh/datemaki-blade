@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
         // テキストとゲストユーザーのseeding実行
         $this->call([
             GuestUserSeeder::class,
+            AdminUserSeeder::class,
             TextSeeder::class,
         ]);
 
