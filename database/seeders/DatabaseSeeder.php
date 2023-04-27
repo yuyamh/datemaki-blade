@@ -44,12 +44,12 @@ class DatabaseSeeder extends Seeder
         } else
         {
             // S3のfileディレクトリと、その中身の全削除
-            if (Storage::disk('s3')->exists('files')) {
+            if (Storage::disk('s3')->exists('public/files')) {
                 Storage::deleteDirectory('public/files');
             }
 
             // アップロードされたプロフィール画像を全削除
-            if (Storage::disk('s3')->exists('profile_icons')) {
+            if (Storage::disk('s3')->exists('public/profile_icons')) {
                 Storage::deleteDirectory('public/profile_icons');
             }
         }
