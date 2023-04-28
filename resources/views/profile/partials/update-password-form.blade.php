@@ -15,45 +15,45 @@
 
         {{-- パスワード変更、ゲストユーザーの場合は変更不可 --}}
         <div>
-            @if ($user->id == 1)
-                <x-input-label for="current_password" :value="__('Current Password')" />
-                <x-text-input id="current_password" name="current_password" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
-                <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @can ('update', $user)
+            <x-input-label for="current_password" :value="__('Current Password')" />
+            <x-text-input id="current_password" name="current_password" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="current-password" />
+            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
             @else
-                <x-input-label for="current_password" :value="__('Current Password')" />
-                <x-text-input id="current_password" name="current_password" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="current-password" />
-                <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
-            @endif
+            <x-input-label for="current_password" :value="__('Current Password')" />
+            <x-text-input id="current_password" name="current_password" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
+            <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @endcan
         </div>
 
         <div>
-            @if ($user->id == 1)
-                <x-input-label for="password" :value="__('New Password')" />
-                <x-text-input id="password" name="password" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
-                <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @can ('update', $user)
+            <x-input-label for="password" :value="__('New Password')" />
+            <x-text-input id="password" name="password" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="new-password" />
+            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
             @else
-                <x-input-label for="password" :value="__('New Password')" />
-                <x-text-input id="password" name="password" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="new-password" />
-                <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-            @endif
+            <x-input-label for="password" :value="__('New Password')" />
+            <x-text-input id="password" name="password" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
+            <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @endcan
         </div>
 
         <div>
-            @if ($user->id == 1)
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
-                <p class="mt-1 text-xs text-red-500">※変更不可</p>
+            @can ('update', $user)
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="new-password" />
+            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
             @else
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-                <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" autocomplete="new-password" />
-                <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-text-input id="password_confirmation" name="password_confirmation" type="password" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" readonly disabled />
+            <p class="mt-1 text-xs text-red-500">※変更不可</p>
             @endif
         </div>
 
         <div class="flex items-center gap-4">
-            @if ($user->id != 1)
-                <x-primary-button class="focus:ring-orange-400">{{ __('Save') }}</x-primary-button>
-            @endif
+            @can ('update', $user)
+            <x-primary-button class="focus:ring-orange-400">{{ __('Save') }}</x-primary-button>
+            @endcan
 
             @if (session('status') === 'password-updated')
                 <p

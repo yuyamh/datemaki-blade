@@ -18,17 +18,10 @@ class ProfileUpdateRequest extends FormRequest
 
     public function rules(): array
     {
-        // ゲストユーザー以外がログインしている時だけ、全てのユーザー情報をバリデーションにかける
-        if (\Auth::id() != self::GUEST_USER_ID)
-        {
-            return [
-                'name' => ['string', 'max:255'],
-                'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-                'image' => ['file', 'mimes:gif,png,jpg,webp', 'max:3072'],
-            ];
-        } else
-        {
-            return [];
-        }
+        return [
+            'name' => ['string', 'max:255'],
+            'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'image' => ['file', 'mimes:gif,png,jpg,webp', 'max:3072'],
+        ];
     }
 }

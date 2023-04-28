@@ -26,6 +26,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // アクセス権の適用
+        $this->authorize($request->user());
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email'))
@@ -47,11 +50,9 @@ class ProfileController extends Controller
                 \Storage::delete('public/profile_icons/' . $request->user()->profile_image);
             }
 
-            // 投稿内容をDBに保存
             $request->user()->profile_image = $filename;
        }
 
-       // バリデーションにかけた値だけをDBに保存（ゲストユーザーの情報は更新されない）
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
@@ -62,6 +63,9 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // アクセス権の適用
+        $this->authorize($request->user());
+
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current-password'],
         ]);

@@ -16,20 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // // storage/app/public/fileディレクトリと、その中身の全削除
-        // if (Storage::exists('public/files'))
-        // {
-        //     Storage::deleteDirectory('public/files');
-        // }
-
-        // // アップロードされたプロフィール画像を全削除
-        // if (Storage::exists('public/profile_icons'))
-        // {
-        //     Storage::deleteDirectory('public/profile_icons');
-        // }
-
         if (app()->isLocal() || app()->runningUnitTests())
         {
+            // ローカル＆テスト環境
             // storage/app/public/fileディレクトリと、その中身の全削除
             if (Storage::disk('public')->exists('files'))
             {
@@ -43,21 +32,24 @@ class DatabaseSeeder extends Seeder
             }
         } else
         {
+            // 本番環境
             // S3のfileディレクトリと、その中身の全削除
-            if (Storage::disk('s3')->exists('public/files')) {
+            if (Storage::disk('s3')->exists('public/files'))
+            {
                 Storage::deleteDirectory('public/files');
             }
 
             // アップロードされたプロフィール画像を全削除
-            if (Storage::disk('s3')->exists('public/profile_icons')) {
+            if (Storage::disk('s3')->exists('public/profile_icons'))
+            {
                 Storage::deleteDirectory('public/profile_icons');
             }
         }
 
-
         // テキストとゲストユーザーのseeding実行
         $this->call([
             GuestUserSeeder::class,
+            AdminUserSeeder::class,
             TextSeeder::class,
         ]);
 
