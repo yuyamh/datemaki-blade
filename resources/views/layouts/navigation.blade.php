@@ -15,12 +15,12 @@
                 </x-slot>
                 <x-slot name="content">
                 @if (Auth::check())
-                    <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
-                    <x-dropdown-link :href="route('myposts.index')">じぶんの教案</x-dropdown-link>
-                    <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
+                <x-dropdown-link :href="route('posts.index')">みんなの教案</x-dropdown-link>
+                <x-dropdown-link :href="route('myposts.index')">じぶんの教案</x-dropdown-link>
+                <x-dropdown-link :href="route('bookmarks')">ブックマーク一覧</x-dropdown-link>
                 @else
-                    <x-dropdown-link :href="route('login')">ログイン</x-dropdown-link>
-                    <x-dropdown-link :href="route('register')">会員登録</x-dropdown-link>
+                <x-dropdown-link :href="route('login')">ログイン</x-dropdown-link>
+                <x-dropdown-link :href="route('register')">会員登録</x-dropdown-link>
                 @endif
                 </x-slot>
             </x-dropdown>
@@ -32,36 +32,36 @@
             <a href="{{ route('posts.index') }}" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white truncate drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
-                    <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-2 my-2 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 sm:m-2 sm:text-xs rounded-xl hover:scale-95 active:scale-90">
-                        <span><i class="fa-solid fa-pen"></i></span>
-                        <span>投稿</span>
-                    </a>
-                    <x-dropdown contentClasses="p-1 bg-white fmr-2">
-                        <x-slot name="trigger">
-                            {{-- ゲストユーザーの場合は、指定した画像をプロフ画像として表示する。 --}}
-                            @if (Auth::id() == 1)
-                                <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
-                            @else
-                                <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
-                            @endif
-                        </x-slot>
-                        <x-slot name="content">
-                            <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
-                            <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                    this.closest('form').submit();">ログアウト
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
+                <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-2 my-2 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 sm:m-2 sm:text-xs rounded-xl hover:scale-95 active:scale-90">
+                    <span><i class="fa-solid fa-pen"></i></span>
+                    <span>投稿</span>
+                </a>
+                <x-dropdown contentClasses="p-1 bg-white fmr-2">
+                    <x-slot name="trigger">
+                        {{-- ゲストユーザーの場合は、ゲストログイン用画像をプロフ画像として表示する。 --}}
+                        @if (Auth::check() && Auth::user()->role === 'guest')
+                        <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                        @else
+                        <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                        @endif
+                    </x-slot>
+                    <x-slot name="content">
+                        <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>
+                        <x-dropdown-link :href="route('profile.edit')">設定</x-dropdown-link>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                                this.closest('form').submit();">ログアウト
+                            </x-dropdown-link>
+                        </form>
+                    </x-slot>
+                </x-dropdown>
                 @else
-                    <a href="{{ route('guest_login') }}" class="flex items-center px-2 mx-2 my-1 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
-                        <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
-                        <span>かんたんログイン</span>
-                    </a>
+                <a href="{{ route('guest_login') }}" class="flex items-center px-2 mx-2 my-1 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
+                    <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
+                    <span>かんたんログイン</span>
+                </a>
                 @endif
             </div>
         </div>
@@ -80,12 +80,12 @@
                 </a>
                 <x-dropdown contentClasses="py-1 bg-white mr-2">
                     <x-slot name="trigger">
-                            {{-- ゲストユーザーの場合は、指定した画像をプロフ画像として表示する。 --}}
-                            @if(Auth::User()->email !== 'guest@guest.com')
-                            <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
-                            @else
-                            <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
-                            @endif
+                        {{-- ゲストユーザーの場合は、ゲストログイン用画像をプロフ画像として表示する。 --}}
+                        @if (Auth::check() && Auth::user()->role === 'guest')
+                        <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                        @else
+                        <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 m-2 bg-gray-200 rounded-full cursor-pointer active:scale-90 hover:scale-95" alt="photo">
+                        @endif
                     </x-slot>
                     <x-slot name="content">
                         <p class="block p-2 mx-2 text-sm italic leading-5 text-left text-gray-700 border-b">{{ Auth::user()->name }}</p>

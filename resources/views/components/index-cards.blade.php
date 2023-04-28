@@ -14,11 +14,11 @@
     <div class="flex flex-col items-start justify-center w-full p-3 bg-white rounded-lg cursor-pointer hover:duration-200 sahdow-lg card hover:scale-95 hover:transition-all hover:bg-yellow-50" data-href="{{ route('posts.show', $post) }}">
         <div class="flex items-start justify-between w-full">
             <div class="flex justify-start w-full mb-4">
-                {{-- ゲストユーザーの場合は、指定した画像をプロフ画像として表示する。 --}}
-                @if ($post->user->id == 1)
-                    <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
+                {{-- ゲストユーザーの場合は、ゲストログイン用画像をプロフ画像として表示する。 --}}
+                @if ($post->user->role === 'guest')
+                <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
                 @else
-                    <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
+                <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
                 @endif
                 <div class="ml-2 truncate">
                     <p class="text-sm text-gray-500 truncate">{{ $post->user->name }}</p>
