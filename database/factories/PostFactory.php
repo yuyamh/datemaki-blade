@@ -32,7 +32,7 @@ class PostFactory extends Factory
 
         // 拡張子をランダムに付与してファイルを生成
         // ファイル名は重複を避けるため、time()ではなくfakerを使用
-        $exts = ['pdf', 'doc', 'zip', 'xls'];
+        $exts = ['pdf', 'docx', 'zip', 'xlsx', 'jpeg', 'jpg', 'png'];
         $ext = $exts[rand(0, count($exts) - 1)];
         $fileName = $this->faker->word() . '.' . $ext;
         UploadedFile::fake()->create($fileName)->storeAs('public/files', $fileName);
@@ -44,14 +44,23 @@ class PostFactory extends Factory
             case 'pdf':
                 $mimetype = 'application/pdf';
                 break;
-            case 'doc':
-                $mimetype = 'application/msword';
+            case 'docx':
+                $mimetype = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
                 break;
             case 'zip':
                 $mimetype = 'application/zip';
                 break;
-            case 'xls':
-                $mimetype = 'application/vnd.ms-excel';
+            case 'xlsx':
+                $mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+                break;
+            case 'jpeg':
+                $mimetype = 'image/jpeg';
+                break;
+            case 'jpg':
+                $mimetype = 'image/jpeg';
+                break;
+            case 'png':
+                $mimetype = 'image/png';
                 break;
         }
 
@@ -59,7 +68,8 @@ class PostFactory extends Factory
             'title' => $this->faker->word(),
             'description' => $this->faker->realText(),
             'level' => $level,
-            'user_id' => $this->faker->numberBetween(1, 3),
+            // user_id=1はゲストユーザー、user_id=2は管理者のため除外。
+            'user_id' => $this->faker->numberBetween(3, 5),
             'file_name' => $fileName,
             'file_mimetype' => $mimetype,
             'file_size' => 0,

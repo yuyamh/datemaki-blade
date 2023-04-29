@@ -18,7 +18,8 @@ class UserController extends Controller
         // 検索フォームに入力された値を取得
         $keyword = $request->user_name_keyword;
 
-        $query = User::latest();
+        // roleカラムに'user'の値を持つユーザーのみを取得する
+        $query = User::where('role', 'user')->latest();
 
         // キーワードで検索をしたときだけ実行
         if ($keyword)

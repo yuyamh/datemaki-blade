@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('role', ['admin', 'guest', 'user'])->default('user'); //admin=管理者、guest=ゲストユーザー、user=一般ユーザ
-            $table->string('password');
+            $table->enum('role', ['admin', 'guest', 'user'])->default('user'); //admin=管理者、guest=ゲストユーザー、user=一般ユーザー
             $table->string('profile_image')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
