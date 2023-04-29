@@ -51,7 +51,9 @@
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
 </div>
 <div class="form-group">
-    <label for="file" class="block text-lg">添付ファイル</label>
+    <label for="file" class="block mb-3 text-lg">添付ファイル
+        <span class="p-1 ml-3 text-base bg-orange-200 rounded-md">形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png</span>
+    </label>
     @if (isset($post->file_name))
         <div class="flex my-2 ml-2 text-sm">
             <p class="mr-4">現在のファイル&nbsp;:&nbsp;{{ $post->file_name}}</p>

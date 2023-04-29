@@ -38,7 +38,7 @@
                 <span><i class="text-orange-400 fa-solid fa-bookmark"></i></i></span>
             @endif
         </div>
-        <p class="h-16 m-3 mt-0 text-base font-normal leading-snug text-gray-500 line-clamp-3">{{ $post->description }}</p>
+        <p class="h-16 m-3 mt-0 text-base font-normal leading-snug text-gray-500 break-all line-clamp-3">{{ $post->description }}</p>
         <p class="ml-auto text-xs font-light text-gray-400">{{ $post->updated_at->format('Y/m/d') }}</p>
     </div>
     @endforeach

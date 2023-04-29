@@ -24,7 +24,7 @@ table.table-index td {
 }
 
 .show-td {
-    @apply p-4 border-t-2 border-l-2 border-r-2 md:border-2 border-gray-300 border-solid bg-gray-50 text-center md:text-left;
+    @apply p-4 border-t-2 border-l-2 border-r-2 md:border-2 border-gray-300 border-solid bg-gray-50 text-center md:text-left break-all;
 }
 
 .show-tr {
