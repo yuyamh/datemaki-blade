@@ -19,9 +19,9 @@ return new class extends Migration
             $table->text('description');
             $table->enum('level', ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'])->default('A1');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('file_name');
-            $table->string('file_mimetype');
-            $table->bigInteger('file_size');
+            $table->string('file_name')->nullable();
+            $table->string('file_mimetype')->nullable();
+            $table->bigInteger('file_size')->nullable();
             $table->foreignId('text_id')->nullable()->constrained('texts');
             $table->timestamps();
         });

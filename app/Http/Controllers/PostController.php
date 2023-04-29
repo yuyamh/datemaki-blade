@@ -81,22 +81,26 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        // ファイルをストレージへ保存
-        $file = $validated['file_name'];
-        $ext  = $file->getClientOriginalextension();
-        $fileName = time() . '.' . $ext;
-        $file->storeAs('public/files', $fileName);
-
-
         $post = new Post();
         $post->title = $validated['title'];
         $post->description = $validated['description'];
         $post->level = $validated['level'];
         $post->user_id = \Auth::id();
-        $post->file_name = $fileName;
-        $post->file_mimetype = $file->getMimeType();
-        $post->file_size = $file->getSize();
         $post->text_id = $validated['text_id'];
+
+        if (isset($validated['file_name']))
+        {
+            $file = $validated['file_name'];
+            $ext  = $file->getClientOriginalextension();
+
+            // ファイルをストレージへ保存
+            $fileName = time() . '.' . $ext;
+            $file->storeAs('public/files', $fileName);
+
+            $post->file_name = $fileName;
+            $post->file_mimetype = $file->getMimeType();
+            $post->file_size = $file->getSize();
+        }
         $post->save();
 
         return redirect(route('myposts.index'))->with('successMessage', '教案を投稿しました。');
@@ -110,31 +114,34 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if (\Auth::check())
+        if (!\Auth::check())
         {
-            // ログインしている場合は、表示処理を行う
-            // アップロードファイルのサイズをKB, MBへ変換
-            $kilobyte = 1024;
-            $megabyte = $kilobyte * 1000;
+            // 未ログインは、ログイン画面へリダイレクト
+            return redirect()->route('login');
+        }
 
+        if (isset($post->file_size))
+        {
+            $kilobyte = 1024; // 1KB
+            $megabyte = $kilobyte * 1000; // 1MB
+
+            // アップロードファイルのサイズをメガバイト、キロバイトへ変換
             if ($megabyte <= $post->file_size)
             {
+                // メガバイトへ変換、小数点2桁より下の桁は四捨五入
                 $post->file_size = round($post->file_size / $megabyte, 2) . 'MB';
             } elseif ($kilobyte <= $post->file_size)
             {
+                // キロバイトへ変換、小数点2桁より下の桁は四捨五入
                 $post->file_size = round($post->file_size / $kilobyte, 2) . 'KB';
             } else
             {
                 $post->file_size = $post->file_size . 'B';
             }
-
-            $data = ['post' => $post];
-            return view('posts.show', $data);
-        } else
-        {
-            // ログインしていない場合は、ログインページへリダイレクトする
-            return redirect()->route('login');
         }
+
+        $data = ['post' => $post];
+        return view('posts.show', $data);
     }
 
     /**
