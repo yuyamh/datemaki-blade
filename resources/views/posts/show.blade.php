@@ -46,24 +46,29 @@
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">概要</th>
-                    <td class="show-td">{!! nl2br(e($post->description)) !!}</td>
+                    <td class="prose-sm prose show-td">{!! Str::markdown(nl2br(e($post->description))) !!}</td>
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">添付ファイル</th>
                     @if(isset($post->file_name))
                     <td class="show-td">
-                        <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer">
-                            <span class="text-blue-500 hover:underline">{{ $post->file_name }}</span>
-                        </a>
-                        <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 ml-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none">
-                            @if ($post->file_mimetype === 'application/pdf' || $post->file_mimetype === 'image/jpeg' || $post->file_mimetype === 'image/png')
-                            <span><i class="mr-2 fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></span>
-                            <span>表示</span>
-                            @else
-                            <span><i class="mr-2 fa-solid fa-arrow-down" style="color: #ffffff;"></i></span>
-                            <span>ダウンロード</span>
-                            @endif
-                        </a>
+                        <div class="flex flex-col items-center justify-center md:justify-start md:flex-row">
+                            <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer">
+                                <span class="text-blue-500 hover:underline">{{ $post->file_name }}</span>
+                            </a>
+                            <div class="md:ml-6">
+                                @if ($post->file_mimetype === 'application/pdf' || $post->file_mimetype === 'image/jpeg' || $post->file_mimetype === 'image/png')
+                                <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-400 border border-transparent rounded-md shadow-md hover:bg-gray-300 focus:bg-gray-400 active:bg-gray-300 focus:outline-none">
+                                    <span><i class="mr-2 fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></span>
+                                    <span>表示</span>
+                                </a>
+                                @endif
+                                <a href="{{ $post->file_url }}" download class="inline-flex items-center justify-center px-4 py-2 mt-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md sm:ml-3 hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none md:mt-0">
+                                    <span><i class="mr-2 fa-solid fa-arrow-down" style="color: #ffffff;"></i></span>
+                                    <span>ダウンロード</span>
+                                </a>
+                            </div>
+                        </div>
                     </td>
                     @else
                     <td class="show-td">&ensp;-</td>
