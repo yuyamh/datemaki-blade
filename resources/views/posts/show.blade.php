@@ -46,7 +46,7 @@
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">概要</th>
-                    <td class="show-td">{!! nl2br(e($post->description)) !!}</td>
+                    <td class="prose-sm prose show-td">{!! Str::markdown(nl2br(e($post->description))) !!}</td>
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">添付ファイル</th>
