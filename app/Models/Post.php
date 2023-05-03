@@ -42,4 +42,10 @@ class Post extends Model
     {
         return \Storage::url('public/files/' . $this->file_name);
     }
+
+    // マークダウンをパースする
+    public function getDescriptionMarkdownAttribute()
+    {
+        return \Str::markdown(e($this->description));
+    }
 }

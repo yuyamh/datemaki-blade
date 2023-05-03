@@ -46,7 +46,11 @@
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">概要</th>
-                    <td class="prose-sm prose show-td">{!! Str::markdown(nl2br(e($post->description))) !!}</td>
+                    <td class="show-td">
+                        <div class="flex flex-col justify-start text-left markdown-body">
+                            {!! $post->description_markdown !!}
+                        </div>
+                    </td>
                 </tr>
                 <tr class="show-tr">
                     <th class="show-th">添付ファイル</th>
