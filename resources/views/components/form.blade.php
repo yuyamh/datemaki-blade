@@ -1,6 +1,9 @@
 @csrf
 <div class="form-group">
-    <label for="title" class="block text-lg">タイトル</label>
+    <label for="title" class="block text-lg">
+        <span>タイトル</span>
+        <span class="text-sm text-gray-500">&ensp;-&nbsp;必須</span>
+    </label>
     <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" placeholder="例：クラスメートに自己紹介しよう" class="form-input">
     <x-input-error :messages="$errors->get('title')" class="mt-2" />
 </div>
@@ -35,7 +38,7 @@
     </div>
 </div>
 <div class="form-group">
-    <p class="block text-lg">使用テキスト<span class="text-sm text-gray-500">&ensp;-&nbsp;任意</span></p>
+    <p class="block text-lg">使用テキスト</p>
     <select name="text_id" class="form-input">
         <option value="">なし</option>
         @foreach ($texts as $text)
@@ -46,13 +49,25 @@
     </select>
 </div>
 <div class="form-group">
-    <label for="description" class="block text-lg">概要</label>
+    <label for="description" class="block text-lg">
+        <span>概要</span>
+        <span class="text-sm text-gray-500">&ensp;-&nbsp;必須、マークダウン記法可</span>
+    </label>
     <textarea name="description" id="description" cols="30" rows="10" placeholder="授業内容、教案の補足説明などを記入する。" class="form-input">{{ old('description', $post->description) }}</textarea>
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
 </div>
 <div class="form-group">
-    <label for="file" class="block mb-3 text-lg">添付ファイル
-        <span class="p-1 ml-3 text-base bg-orange-200 rounded-md">形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png</span>
+    <label for="file" class="flex flex-col mb-3 text-lg md:flex-row">
+        <span>添付ファイル</span>
+        <span class="p-1 text-sm bg-orange-200 rounded-md md:ml-3 md:text-base">
+            形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
+        </span>
+        {{-- <div class="flex flex-col md:flex-row">
+            <span>添付ファイル</span>
+            <span class="p-1 ml-3 text-sm bg-orange-200 rounded-md md:text-base">
+                形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
+            </span>
+        </div> --}}
     </label>
     @if (isset($post->file_name))
         <div class="flex my-2 ml-2 text-sm">
@@ -60,6 +75,6 @@
             <p><a href="{{ $post->file_url }}" class="underline hover:text-gray-600">表示</a></p>
         </div>
     @endif
-    <input type="file" name="file_name" id="file" class="my-1">
+    <input type="file" name="file_name" id="file" class="w-full my-1">
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>

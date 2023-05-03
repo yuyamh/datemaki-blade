@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="/css/github-markdown.css">
 
         <!-- favicon -->
         <link rel="shortcut icon" href="{{ asset('/favicons/favicon.ico') }}">
@@ -34,7 +35,7 @@
 
         <!-- Page Content -->
         @if (session('successMessage'))
-            <div class="p-4 m-3 bg-green-100 shadow md:w-4/5 sm:w-full sm:rounded-lg">
+            <div class="w-4/5 p-4 m-3 bg-green-100 rounded-lg shadow">
                 <p class="text-green-700 ">{{ session('successMessage') }}</p>
             </div>
         @endif
