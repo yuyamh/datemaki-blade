@@ -227,22 +227,4 @@ class PostController extends Controller
 
         return view('posts.bookmarks', $data);
     }
-
-    /**
-     * ファイルをダウンロードする.
-     *
-     * @param \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function downloadFile(Post $post)
-    {
-        $filePath = $post->file_url;
-        $fileName = $post->file_name;
-        $mimetype = Storage::mimeType($filePath);  //ここで$mimetypeがfalseになる。
-        // $mimetype = $post->file_mimetype; // この記述でもうまくいかなかった。
-
-        $headers = [['Content-Type' => $mimetype]];
-
-        return Storage::download($filePath, $fileName, $headers);
-    }
 }
