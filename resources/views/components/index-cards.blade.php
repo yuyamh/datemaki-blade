@@ -18,7 +18,7 @@
                 @if ($post->user->role === 'guest')
                 <img src="{{ asset('images/guest_user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
                 @else
-                <img src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
+                <img src="{{ isset($post->user->profile_image) ? $post->user->image_url : asset('images/user_icon.png') }}" class="w-12 h-12 bg-gray-200 rounded-full" alt="photo">
                 @endif
                 <div class="ml-2 truncate">
                     <p class="text-sm text-gray-500 truncate">{{ $post->user->name }}</p>
