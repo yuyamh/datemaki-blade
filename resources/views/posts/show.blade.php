@@ -69,12 +69,12 @@
                                 <img src="{{ $post->file_url }}">
                                 {{-- PDFであれば表示ボタンを表示 --}}
                                 @elseif ($post->file_mimetype === 'application/pdf')
-                                <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none">
+                                <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-4 py-2 mt-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none md:mt-0">
                                     <span><i class="mr-2 fa-solid fa-arrow-up-right-from-square" style="color: #ffffff;"></i></span>
                                     <span>表示</span>
                                 </a>
                                 @else
-                                <a href="{{ $post->file_url }}" download class="inline-flex items-center justify-center px-4 py-2 mt-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none">
+                                <a href="{{ $post->file_url }}" download class="inline-flex items-center justify-center px-4 py-2 mt-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-blue-500 border border-transparent rounded-md shadow-md hover:bg-blue-300 focus:bg-blue-500 active:bg-blue-300 focus:outline-none md:mt-0">
                                     <span><i class="mr-2 fa-solid fa-download" style="color: #ffffff;"></i></span>
                                     <span>ダウンロード</span>
                                 @endif

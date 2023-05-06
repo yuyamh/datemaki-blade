@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         if (app()->isLocal() || app()->runningUnitTests())
         {
-            // ローカル＆テスト環境
+            // 開発＆テスト環境
             // storage/app/public/fileディレクトリと、その中身の全削除
             if (Storage::disk('public')->exists('files'))
             {
@@ -53,10 +53,18 @@ class DatabaseSeeder extends Seeder
             TextSeeder::class,
         ]);
 
-        //開発環境の時にのみ実行するseeding。
-        if (App::environment('local'))
+        if (app()->isLocal() || app()->runningUnitTests())
         {
-            $this->call([DummyDataSeeder::class, //ダミーデータの作成
+            //開発&テスト環境はファクトリでダミーデータ登録。
+            $this->call([
+                DummyDataSeeder::class, //ダミーデータの登録
+            ]);
+        } else
+        {
+            // 本番環境は本格的なサンプルデータ登録。
+            $this->call([
+                SampleUserSeeder::class, // サンプルユーザの登録
+                SamplePostsSeeder::class, // サンプルデータの登録
             ]);
         }
     }
