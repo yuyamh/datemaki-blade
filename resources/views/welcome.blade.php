@@ -25,7 +25,7 @@
             <h1 class="mt-5 mb-2 text-4xl font-bold">『だてまき』</h1>
             <h2 class="mb-5 text-xl italic font-bold"><span class="text-orange-500">Da</span>tabase for <span class="text-orange-500">Te</span>achers <span class="text-orange-500">Maki</span>ng Japanese Lesson plans</h2>
             <p class="mb-2">「だてまき」は、日本語教師の方々に向けた教案（授業指導案）共有プラットフォームです。</p>
-            <p class="mb-2">他の先生の教案をダウンロードしたり、自分の教案をしたりすることができます。</p>
+            <p class="mb-2">他の先生の教案をダウンロードしたり、自分の教案を投稿したりすることができます。</p>
             <p>日本語教師の方々が、授業に新たなアイディアを取り入れる場を提供することを目指して、「だてまき」を作りました。</p>
             <img class="mx-auto my-10" src="{{ asset('images/teacher.png') }}" alt="授業イラスト" height="250" width="250">
         </div>
