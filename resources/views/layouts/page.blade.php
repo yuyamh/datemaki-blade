@@ -34,10 +34,13 @@
 
         <!-- Page Content -->
         <main class="w-full row-auto">
+            @if (Request::routeIs('page.*'))
             <div class="block max-w-5xl p-10 mx-auto text-lg bg-white rounded-md shadow-md md:w-3/4 my-14">
                 <h1 class="pb-2 text-2xl font-bold border-b border-gray-300 mb-7">{{ $title }}</h1>
                 {{ $slot }}
             </div>
+            @endif
+            {{ $slot }}
         </main>
         <x-footer class="sticky bottom-0"/>
     </body>

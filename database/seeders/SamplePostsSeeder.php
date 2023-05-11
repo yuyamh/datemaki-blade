@@ -259,20 +259,6 @@ class SamplePostsSeeder extends Seeder
             'text_id' => 2,
         ]);
         Post::create([
-            'title' => '第34課 みんなの日本語初級Ⅱ',
-            'description' => '## 学習内容
-* 学習項目：3.〜て/ないで〜 4.〜ないで
-* 学習目標：二つの動作の前後関係を言い表せる。ある動作をどのような状態で行うかを説明することができる。
-* 教具・教材：絵カード、イラスト、高山磁石、カメラ
-#### 教案は、下記のサイトから引用
-[ぱんずせんせいBLOG](https://sensei-nihongo.com/minniti34kyoan/)
-    ※特別に教案の使用許可をいただきました、添付する教案の著作権はぱんずせんせい氏に帰属します。',
-            'file_name' => 'minnichi_beginner2_34.zip',
-            'level' => 'A2',
-            'user_id' => 5,
-            'text_id' => 2,
-        ]);
-        Post::create([
             'title' => '第36課 みんなの日本語初級Ⅱ',
             'description' => '## 学習内容
 * 学習項目：1.〜ように、2.〜ようになります。

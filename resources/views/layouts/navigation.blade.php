@@ -60,7 +60,7 @@
                 @else
                 <a href="{{ route('guest_login') }}" class="flex items-center px-2 mx-2 my-1 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-1"><i class="fa-solid fa-user-check"></i></span>
-                    <span>かんたんログイン</span>
+                    <span>ゲストログイン</span>
                 </a>
                 @endif
             </div>
@@ -104,7 +104,7 @@
                 <a href="{{ route('register') }}" class="nav-items">会員登録</a>
                 <a href="{{ route('guest_login') }}" class="flex items-center px-2 mx-2 my-1 text-sm text-yellow-900 bg-yellow-200 border-2 border-yellow-800 rounded-xl hover:scale-95 active:scale-90">
                     <span class="mr-2"><i class="fa-solid fa-user-check"></i></span>
-                    <span>かんたんログイン</span>
+                    <span>ゲストログイン</span>
                 </a>
                 @endif
             </div>
