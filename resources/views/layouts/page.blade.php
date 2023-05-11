@@ -39,8 +39,9 @@
                 <h1 class="pb-2 text-2xl font-bold border-b border-gray-300 mb-7">{{ $title }}</h1>
                 {{ $slot }}
             </div>
-            @endif
+            @else
             {{ $slot }}
+            @endif
         </main>
         <x-footer class="sticky bottom-0"/>
     </body>
