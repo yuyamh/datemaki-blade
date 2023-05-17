@@ -35,8 +35,8 @@
 
         <!-- Page Content -->
         @if (session('successMessage'))
-            <div class="w-4/5 p-4 m-3 bg-green-100 rounded-lg shadow">
-                <p class="text-green-700 ">{{ session('successMessage') }}</p>
+            <div class="p-4 m-3 bg-green-100 rounded-lg shadow max-w-7xl">
+                <p class="text-green-700">{{ session('successMessage') }}</p>
             </div>
         @endif
 
