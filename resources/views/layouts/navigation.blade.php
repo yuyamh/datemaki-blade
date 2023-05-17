@@ -9,9 +9,9 @@
         <div class="flex items-center flex-grow ml-1 md:hidden">
             <x-dropdown class="h-full md:hidden" align="left">
                 <x-slot name="trigger" class="h-full">
-                    <x-primary-button class="h-full m-3 text-base bg-transparent rounded-lg md:hidden focus:bg-transparent focus:ring-transparent active:bg-yellow-300" style="margin:0px;padding:2px 8px;">
+                    <button class="inline-flex items-center h-full px-4 py-2 m-3 text-base font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-transparent border border-transparent rounded-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 md:hidden focus:bg-yellow-300 focus:ring-transparent active:bg-yellow-300" style="margin:0px;padding:2px 8px;">
                         <span class="text-2xl md:hidden"><i class="fa-sharp fa-solid fa-bars"></i></span>
-                    </x-primary-button>
+                    </button>
                 </x-slot>
                 <x-slot name="content">
                 @if (Auth::check())
