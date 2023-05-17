@@ -23,15 +23,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/page/terms', [PageController::class, 'terms'])->name('page.terms');
 Route::get('/page/policy', [PageController::class, 'policy'])->name('page.policy');
 Route::get('/page/contact', [PageController::class, 'contact'])->name('page.contact');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('/posts', PostController::class)->except('index');
+    Route::get('/myposts', [MyPostController::class, 'index'])->name('myposts.index');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -40,8 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookmarks', [PostController::class, 'bookmark_posts'])->name('bookmarks');
 });
 
-Route::resource('/posts', PostController::class);
-Route::resource('/myposts', MyPostController::class)->only(['index']);
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::resource('/users', UserController::class)->only(['index', 'show']);
 
 require __DIR__.'/auth.php';

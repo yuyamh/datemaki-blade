@@ -9,7 +9,7 @@
         <div class="flex items-center flex-grow ml-1 md:hidden">
             <x-dropdown class="h-full md:hidden" align="left">
                 <x-slot name="trigger" class="h-full">
-                    <x-primary-button class="h-full m-3 text-base bg-transparent rounded-lg md:hidden focus:bg-transparent focus:ring-transparent active:bg-yellow-100 focus:text-yellow-800" style="margin:0px;padding:2px 8px;">
+                    <x-primary-button class="h-full m-3 text-base bg-transparent rounded-lg md:hidden focus:bg-transparent focus:ring-transparent active:bg-yellow-300" style="margin:0px;padding:2px 8px;">
                         <span class="text-2xl md:hidden"><i class="fa-sharp fa-solid fa-bars"></i></span>
                     </x-primary-button>
                 </x-slot>

@@ -36,6 +36,7 @@
             <label for="level-C2" class="radio-label">C2</label>
         </div>
     </div>
+    <x-input-error :messages="$errors->get('level')" class="mt-2" />
 </div>
 <div class="form-group">
     <p class="block text-lg">使用テキスト</p>

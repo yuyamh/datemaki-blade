@@ -32,7 +32,7 @@
         <hr class="my-5 border-gray-300">
         <div class="flex flex-col justify-center py-10 md:px-5 md:flex-row">
             <div class="px-3 md:flex-1">
-                <img class="mx-auto my-6" src="{{ asset('images/share.png') }}" alt="共有のイラスト" height="250" width="250">
+                <img class="mx-auto my-6" src="{{ asset('images/share.png') }}" alt="共有のイラスト" height="260" width="260">
                 <h1 class="pl-2 my-3 text-lg font-bold border-l-8 border-orange-400">教案のシェア</h1>
                 <p>あなたが作った教案を投稿し、他の先生に共有できます。</p>
             </div>

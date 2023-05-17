@@ -114,12 +114,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if (!\Auth::check())
-        {
-            // 未ログインは、ログイン画面へリダイレクト
-            return redirect()->route('login');
-        }
-
         if (isset($post->file_size))
         {
             $kilobyte = 1024; // 1KB
