@@ -27,8 +27,13 @@ jobs:
             - node_modules
       - run: LARAVEL_BYPASS_ENV_CHECK=1 npm run build
       - run:
-          name: php test
-          command: vendor/bin/phpunit
+          name: "Create database and run migration"
+          command: |
+            php artisan migrate --env=testing --database=sqlite_testing --force
+      - run:
+          name: "テスト"
+          command: |
+            ./vendor/bin/phpunit
   deploy:
     docker:
       - image: cimg/php:8.2-browsers
