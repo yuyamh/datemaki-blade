@@ -48,6 +48,7 @@
         </option>
         @endforeach
     </select>
+    <x-input-error :messages="$errors->get('text_id')" class="mt-2" />
 </div>
 <div class="form-group">
     <label for="description" class="block text-lg">

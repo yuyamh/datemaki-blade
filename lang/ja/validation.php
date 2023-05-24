@@ -122,6 +122,7 @@ return [
         'level' => 'レベル',
         'description' => '概要',
         'file_name' => '添付ファイル',
+        'text_id' => 'テキスト',
         'name'  => '名前',
         'email'  => 'メールアドレス',
         'password' => 'パスワード',
