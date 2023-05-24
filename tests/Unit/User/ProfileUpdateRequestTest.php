@@ -292,6 +292,50 @@ class ProfileUpdateRequestTest extends TestCase
 
     /**
      * 概要 プロフィール情報更新のバリデーションチェック
+     * 条件 メアドが他のユーザーと重複した場合
+     * 結果 falseを返すこと
+     */
+    public function test_メールアドレスが他ユーザーと重複した場合エラー()
+    {
+        // テストユーザを作成する
+        $user = User::factory()->create();
+        // 他のユーザーを作成する
+        $anotherUser = User::factory()->create([
+            'email' => 'aaa@example.com',
+        ]);
+        // メアドを他のユーザーと重複させる
+        $user->email = 'aaa@example.com';
+        // プロフィール画像用のダミーファイルを作成する
+        $image = UploadedFile::fake()->image('dummy.jpg');
+
+        $data = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'image' => $image,
+        ];
+
+        $request = new ProfileUpdateRequest();
+        // ProfileUpdateRequest内の$this->user()が、$userを返すように設定する
+        $request->setUserResolver(function () use ($user)
+        {
+            return $user;
+        });
+
+        $rules = $request->rules();
+        $validator = Validator::make($data, $rules);
+
+        // テスト実施
+        $actual = $validator->passes();
+
+        // 期待値を設定
+        $expected = false;
+
+        // テスト検証
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * 概要 プロフィール情報更新のバリデーションチェック
      * 条件 プロフィール画像の項目のみ空の場合
      * 結果 trueを返すこと
      */
