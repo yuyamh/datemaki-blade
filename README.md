@@ -1,66 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ◼️ アプリ概要
+### タイトル名：だてまき
+Github：
+**[https://github.com/yuyamh/datemaki-blade.git](https://github.com/yuyamh/datemaki-blade.git)**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<!-- ここでQiita記事へのリンク貼る -->
 
-## About Laravel
+![top](https://github.com/yuyamh/datemaki-blade/assets/97832522/36210e52-df0d-4fdc-9b8c-c64d31298565)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## コンセプト
+ - 日本語教師に向けた、教案（教育現場で使用される授業計画や指導案）を自由に共有・検索できるWebアプリケーション。
+ - 投稿することで、作成した教案・教材をユーザーに簡単にシェアできる。
+ - 他のユーザーが投稿した教案や教材の検索・ダウンロードが可能。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 特徴
+ - 教案や教材の画像・ファイルアップロード機能
+ - 学習者の日本語レベル、使用テキスト、キーワード、ユーザー名からの投稿検索機能
+ - 気に入った投稿のブックマーク機能
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 使用画面のイメージ
+### ホーム画面
+![top](https://github.com/yuyamh/datemaki-blade/assets/97832522/36210e52-df0d-4fdc-9b8c-c64d31298565)
 
-## Learning Laravel
+### 投稿一覧画面
+ユーザーが投稿した教案、教材、授業のアイディアを見ることができます。
+![index](https://github.com/yuyamh/datemaki-blade/assets/97832522/952ef119-c8bf-4693-babf-e3f503163cab)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<!-- ここに検索の動画を差し込む。 -->
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 投稿詳細画面
+気になる投稿の内容が詳しく見られます。<br>
+ここでファイルのダウンロード・教案のブックマークが可能です。
+![show](https://github.com/yuyamh/datemaki-blade/assets/97832522/e3c1d537-65ef-4092-b425-8f4c3da8d759)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 投稿作成・編集画面
+投稿の作成・編集ができます（教案ファイルの添付は任意）。<br>
+概要はマークダウン記法にも対応しています。
+![create&edit](https://github.com/yuyamh/datemaki-blade/assets/97832522/083459cb-618c-48da-b6e4-e7a60f823cc8)
 
-## Laravel Sponsors
+### マイページ
+アカウント情報の確認ができます。<br>
+ここでアカウント設定の変更・削除が可能です。
+![profile](https://github.com/yuyamh/datemaki-blade/assets/97832522/7d5fab1b-8dcf-4b7d-9adb-52c63fae9564)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<br>
 
-### Premium Partners
+# ◼️ アプリの機能一覧
+## メイン機能
+ - 教案投稿機能（CRUD）
+ - AWS S3を用いたファイルアップロード機能（ファイル形式 : pdf, docx, zip, xlsx, jpeg, jpg, png）
+ - ページネーション機能
+ - ブックマーク登録・一覧機能
+ - 教案検索機能（キーワード、学習者レベル、使用テキスト）
+ - ユーザー検索機能（キーワード）
+ - PHPUnitテスト（CircleCI）
+ - レスポンシブデザイン（スマホ版対応）
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## 認証機能
+ - 会員登録 / ログイン / ログアウト
+ - ゲストログイン
+ - パスワード変更（ログイン中）
+ - パスワードリセット（非ログイン）
+ - アカウント情報編集（アイコン、名前、メールアドレス）
+ - アカウント削除
 
-## Contributing
+ <br>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# ◼️ 使用技術
 
-## Code of Conduct
+### フロントエンド
+- HTML / CSS / Tailwind CSS
+- JavaScript
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### バックエンド
+- PHP 8.2.5
+- Laravel 9.52.7
+- MySQL 8.0.32
+- composer 2.5.5
+- PHPUnit 9.6.7
+- Node.js 16.20.0 / npm 9.6.6
 
-## Security Vulnerabilities
+### インフラ
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Docker 23.0.5 / docker-compose 1.29.2（開発環境）
+- AWS (EC2, ALB, ACM, S3, RDS, CloudFormation, Route53, VPC, EIP, IAM, CloudWatch)
+- nginx 1.22.1
+- CircleCI 2.1
 
-## License
+### その他
+- Git 2.39.0 / GitHub
+- PHPMyAdmin
+- Visual Studio Code
+- iTerm2
+- Notion
+- Google Sheets
+- Google Slides
+- Google Document
+- MacOS
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br>
+
+# ◼️ インフラ構成図
+
+<br>
+
+# ◼️ ER図
+
+<br>
+
+# ◼️ 工夫したところ
+ -
+ -
+ -
+
+<br>
+
+# ◼️ 苦労したところ
+ -
+ -
+ -
+
+<br>
+
+## 開発者
+Yuya.Mansur.H<br>
+Twitter：https://twitter.com/Mnsr_3
