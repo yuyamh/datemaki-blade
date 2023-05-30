@@ -1,4 +1,4 @@
-# ◼️ アプリ概要
+# ⭐️ アプリ概要
 ### タイトル名：だてまき
 Github：
 **[https://github.com/yuyamh/datemaki-blade.git](https://github.com/yuyamh/datemaki-blade.git)**
@@ -25,7 +25,9 @@ Github：
 ユーザーが投稿した教案、教材、授業のアイディアを見ることができます。
 ![index](https://github.com/yuyamh/datemaki-blade/assets/97832522/952ef119-c8bf-4693-babf-e3f503163cab)
 
-<!-- ここに検索の動画を差し込む。 -->
+教案・教材は、検索フォームからキーワード、学習者レベル、使用テキストに絞り込み検索することができます。
+![search_record](https://github.com/yuyamh/datemaki-blade/assets/97832522/b4b1a728-943a-4337-a9c1-dca2f7875ed6)
+
 
 ### 投稿詳細画面
 気になる投稿の内容が詳しく見られます。<br>
@@ -44,7 +46,7 @@ Github：
 
 <br>
 
-# ◼️ アプリの機能一覧
+# ⭐️ アプリの機能一覧
 ## メイン機能
  - 教案投稿機能（CRUD）
  - AWS S3を用いたファイルアップロード機能（ファイル形式 : pdf, docx, zip, xlsx, jpeg, jpg, png）
@@ -65,7 +67,7 @@ Github：
 
  <br>
 
-# ◼️ 使用技術
+# ⭐️ 使用技術
 
 ### フロントエンド
 - HTML / CSS / Tailwind CSS
@@ -99,22 +101,22 @@ Github：
 
 <br>
 
-# ◼️ インフラ構成図
+# ⭐️ インフラ構成図
 
 <br>
 
-# ◼️ ER図
+# ⭐️ ER図
 
 <br>
 
-# ◼️ 工夫したところ
+# ⭐️ 工夫したところ
  -
  -
  -
 
 <br>
 
-# ◼️ 苦労したところ
+# ⭐️ 苦労したところ
  -
  -
  -
