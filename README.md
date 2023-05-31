@@ -8,9 +8,9 @@ Github：
 ![top](https://github.com/yuyamh/datemaki-blade/assets/97832522/36210e52-df0d-4fdc-9b8c-c64d31298565)
 
 ## コンセプト
- - 日本語教師に向けた、教案（教育現場で使用される授業計画や指導案）を自由に共有・検索できるWebアプリケーション。
- - 投稿することで、作成した教案・教材をユーザーに簡単にシェアできる。
- - 他のユーザーが投稿した教案や教材の検索・ダウンロードが可能。
+ - 日本語教師に向けた、教案（教育現場で使用される授業計画や指導案）を自由に共有・検索できるWebアプリケーションです。
+ - 投稿することで、作成した教案・教材をユーザーに簡単にシェアできます。
+ - 他のユーザーが投稿した教案や教材の検索・ダウンロードが可能です。
 
 ## 特徴
  - 教案や教材の画像・ファイルアップロード機能
@@ -103,23 +103,52 @@ Github：
 
 # ⭐️ インフラ構成図
 
+
 <br>
 
 # ⭐️ ER図
+![ER_diagram](https://github.com/yuyamh/datemaki-blade/assets/97832522/c84f3125-f89c-4f4c-8f1b-87901a8a14d7)
+
+<br>
+
+# ⭐️ テーブル定義書
+概要レベルのER図を元に、テーブル定義書を作成しました。
+
+postsテーブル
+![posts_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/20dfbe06-71bb-4b9f-a8ef-afb0544b676d)
+
+textsテーブル
+![texts_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/df54759f-7083-482e-8ec2-73da7f694289)
+
+bookmarksテーブル
+![bookmarks_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/5eb204db-4abe-4d33-9737-9af93a125fc9)
+
+usersテーブル
+![users_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/ef7bf6dc-c2ac-4d09-831c-c29a9d8ed249)
+
+<br>
+
+# ⭐️ URL設計書
+![URL](https://github.com/yuyamh/datemaki-blade/assets/97832522/1381240c-16bc-4492-92d5-e0202bcae1fb)
+
+![URL](https://github.com/yuyamh/datemaki-blade/assets/97832522/ff68d148-17cc-4888-9fd0-b82cd6a6b22e)
 
 <br>
 
 # ⭐️ 工夫したところ
- -
- -
- -
+ - アクセサを用いた、開発環境と本番環境におけるアップロードファイルのパスの統一化。
+ - AWS S3へのファイルアップロード・削除。
+ - PHPUnitを取り入れたバグの検知。
+ - ゲストログインの実装。
 
 <br>
 
 # ⭐️ 苦労したところ
- -
- -
- -
+ - UI/UXの調整（Tailwind CSS）
+ - FormRequestクラスを用いたバリデーションの実装
+ - S3からのオブジェクト保存・取得・削除
+ - AWS + CircleCIでの自動テスト・デプロイ
+
 
 <br>
 
