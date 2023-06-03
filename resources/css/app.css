@@ -48,7 +48,7 @@ table.table-index td {
 }
 
 .radio-level {
-    @apply block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-green-400 peer-checked:font-bold peer-checked:text-white;
+    @apply block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-green-500 peer-checked:font-bold peer-checked:text-white;
 }
 
 .drop-buttons {
