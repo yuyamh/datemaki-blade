@@ -26,11 +26,11 @@
         {{-- 名前変更、ゲストユーザーの場合は変更不可 --}}
         <div>
             @can ('update', $user)
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nickname')" />
             <x-text-input id="name" name="name" type="text" class="block w-full mt-1 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
             @else
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('Nickname')" />
             <x-text-input id="name" name="name" type="text" class="block w-full mt-1 text-gray-700 bg-gray-300 border border-gray-400 opacity-50" :value="$user->name" readonly disabled />
             <p class="mt-1 text-xs text-red-500">※変更不可</p>
             @endcan
