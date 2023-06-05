@@ -131,7 +131,6 @@ class PostControllerTest extends TestCase
         $response = $this->actingAs($this->user)
                          ->from(route('posts.edit', ['post' => $this->post]))
                          ->patch(route('posts.update', ['post' => $this->post]), $this->data);
-                         // TODO:↑カッコの位置なんでこうなるの？
 
         // テスト検証
         $response->assertRedirect(route('posts.show', ['post' => $this->post]));
