@@ -94,6 +94,7 @@ Github：
 - Visual Studio Code
 - iTerm2
 - Notion
+- draw.io
 - Google Sheets
 - Google Slides
 - Google Document
@@ -102,7 +103,7 @@ Github：
 <br>
 
 # ⭐️ インフラ構成図
-現在作成中です。
+![Infra_diagram](https://github.com/yuyamh/datemaki-blade/assets/97832522/af49af24-4495-40a9-8eaa-2ef71b951268)
 
 <br>
 
