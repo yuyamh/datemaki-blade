@@ -103,7 +103,7 @@ Github：
 <br>
 
 # ⭐️ インフラ構成図
-![Infra_diagram](https://github.com/yuyamh/datemaki-blade/assets/97832522/af49af24-4495-40a9-8eaa-2ef71b951268)
+![Infra_diagram](https://github.com/yuyamh/datemaki-blade/assets/97832522/18b4f0eb-2188-4ead-ae7e-1190c6d5277f)
 
 <br>
 
