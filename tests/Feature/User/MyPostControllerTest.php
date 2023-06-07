@@ -31,6 +31,7 @@ class MyPostControllerTest extends TestCase
 
         // 他のユーザの投稿を生成
         $this->otherPost = Post::factory()->create([
+            'title' => '他のユーザの投稿',
             'user_id' => 2,
         ]);
     }
