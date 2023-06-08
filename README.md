@@ -1,7 +1,7 @@
 # ⭐️ アプリ概要
 ### タイトル名：だてまき
 Github：
-**[https://github.com/yuyamh/datemaki-blade.git](https://github.com/yuyamh/datemaki-blade.git)**
+**[https://github.com/yuyamh/datemaki-blade](https://github.com/yuyamh/datemaki-blade)**
 
 <!-- ここでQiita記事へのリンク貼る -->
 
