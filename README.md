@@ -16,7 +16,7 @@ Github：
  - 教案や教材の画像・ファイルアップロード機能
  - 学習者の日本語レベル、使用テキスト、キーワード、ユーザー名からの投稿検索機能
  - 気に入った投稿のブックマーク機能
- 
+
 <br>
 
 ## 使用画面のイメージ
@@ -124,7 +124,7 @@ textsテーブル
 ![texts_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/df54759f-7083-482e-8ec2-73da7f694289)
 
 bookmarksテーブル
-![bookmarks_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/5eb204db-4abe-4d33-9737-9af93a125fc9)
+![bookmarks_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/77b0b72e-0aca-4973-aee4-9d6a469f57bf)
 
 usersテーブル
 ![users_table](https://github.com/yuyamh/datemaki-blade/assets/97832522/ef7bf6dc-c2ac-4d09-831c-c29a9d8ed249)
