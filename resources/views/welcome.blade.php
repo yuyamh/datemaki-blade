@@ -33,14 +33,14 @@
         <div class="flex flex-col justify-center py-10 md:px-5 md:flex-row">
             <div class="px-3 mb-5 md:flex-1 md:mb-0">
                 <div class="flex flex-col-reverse md:flex-col">
-                    <img class="mx-auto my-6 md:mb-14" src="{{ asset('images/share.png') }}" alt="共有のイラスト" height="250" width="250">
+                    <img class="mx-auto my-6 md:my-9 lg:my-8" src="{{ asset('images/share.png') }}" alt="共有のイラスト" height="250" width="250">
                     <div>
                         <h1 class="pl-2 my-3 text-lg font-bold border-l-8 border-orange-400">教案のシェア</h1>
                         <p>あなたが作った教案を投稿し、他の先生に共有できます。</p>
                     </div>
                 </div>
             </div>
-            <div class="px-3 md:flex-1">
+            <div class="px-3 mb-5 md:flex-1 md:mb-0">
                 <div class="flex flex-col-reverse md:flex-col">
                     <img class="mx-auto my-6" src="{{ asset('images/seach.png') }}" alt="検索イラスト" height="220" width="220">
                     <div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="px-3 md:flex-1">
+            <div class="px-3 mb-5 md:flex-1 md:mb-0">
                 <div class="flex flex-col-reverse md:flex-col">
                     <img class="mx-auto my-6" src="{{ asset('images/bookmarks.png') }}" alt="ブックマークイラスト" height="220" width="220">
                     <div>
