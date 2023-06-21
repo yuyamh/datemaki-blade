@@ -11,6 +11,22 @@ html {
     @apply flex items-center px-3 py-2 text-white font-bold leading-normal hover:border-b-2 hover:text-yellow-800 hover:bg-yellow-200 hover:border-yellow-900;
 }
 
+.markdown-table thead, tr, th, tbody, td {
+    @apply border border-gray-300 border-solid;
+}
+
+.markdown-table thead {
+    @apply bg-orange-200 text-lg;
+}
+
+.markdown-table th {
+    @apply p-2;
+}
+
+.markdown-table td {
+    @apply p-2;
+}
+
 table.table-index th {
     @apply px-6 py-4 text-lg text-left text-gray-100 whitespace-nowrap;
 }

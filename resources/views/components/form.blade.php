@@ -10,7 +10,7 @@
 <div class="form-group">
     <p class="block text-lg">レベル（CEFR基準）</p>
     <div class="grid w-full grid-cols-6 p-2 space-x-2 bg-gray-200 shadow-sm rounded-xl">
-        {{-- A1をselectedに設定する --}}
+        {{-- A1をselectedに設定 --}}
         <div>
             <input type="radio" id="level-A1" name="level" class="hidden peer" value="A1"{{ old('level', $post->level ?? 'A1') == 'A1' ? " checked" : "" }}>
             <label for="level-A1" class="radio-label">A1</label>
@@ -54,6 +54,16 @@
     <label for="description" class="block text-lg">
         <span>概要</span>
         <span class="text-sm text-gray-500">&ensp;-&nbsp;必須、マークダウン記法可</span>
+        <button
+        class="ml-1 hover:scale-90 active:scale-80"
+        x-data=""
+        x-on:click.prevent="$dispatch('open-modal', 'markdown-description')"
+        >
+        <i class="fa-regular fa-circle-question" style="color: #e79608;"></i>
+        </button>
+        <x-modal name="markdown-description">
+            <x-markdown-description />
+        </x-modal>
     </label>
     <textarea name="description" id="description" cols="30" rows="10" placeholder="授業内容、教案の補足説明などを記入する。" class="form-input">{{ old('description', $post->description) }}</textarea>
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
@@ -64,12 +74,6 @@
         <span class="p-1 text-sm bg-orange-200 rounded-md md:ml-3 md:text-base">
             形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
         </span>
-        {{-- <div class="flex flex-col md:flex-row">
-            <span>添付ファイル</span>
-            <span class="p-1 ml-3 text-sm bg-orange-200 rounded-md md:text-base">
-                形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
-            </span>
-        </div> --}}
     </label>
     @if (isset($post->file_name))
         <div class="flex my-2 ml-2 text-sm">
