@@ -79,7 +79,7 @@ Github：
 - PHP 8.2.5
 - Laravel 9.52.7
 - MySQL 8.0.32
-- composer 2.5.5
+- Composer 2.5.5
 - PHPUnit 9.6.7
 - Node.js 16.20.0 / npm 9.6.6
 
