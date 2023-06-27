@@ -1,7 +1,7 @@
 <nav class="flex w-full h-16 bg-gradient-to-r from-orange-300 via-yellow-400 to-orange-400">
     <div class="flex items-stretch w-full h-full">
         <div class="items-center hidden h-full md:mx-2 md:flex shrink-0">
-            <a href="{{ route('posts.index') }}">
+            <a href="{{ route('welcome') }}">
                 <x-application-logo class="block w-auto text-gray-800 rounded-full fill-current h-9" />
             </a>
         </div>
@@ -25,11 +25,11 @@
                 </x-slot>
             </x-dropdown>
             <div class="flex items-center h-full m-1 md:mx-2 shrink-0">
-                <a href="{{ route('posts.index') }}">
+                <a href="{{ route('welcome') }}">
                     <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
                 </a>
             </div>
-            <a href="{{ route('posts.index') }}" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white truncate drop-shadow-lg">だてまき</a>
+            <a href="{{ route('welcome') }}" class="flex items-center py-2 pl-1 text-base font-bold leading-normal text-white truncate drop-shadow-lg">だてまき</a>
             <div class="flex items-stretch justify-end h-full ml-auto">
                 @if (Auth::check())
                 <a href="{{ route('posts.create') }}" class="flex flex-col items-center justify-center px-2 my-2 text-xs text-yellow-900 bg-yellow-200 border-2 border-yellow-800 sm:m-2 sm:text-xs rounded-xl hover:scale-95 active:scale-90">
@@ -67,7 +67,7 @@
         </div>
 
         {{-- PC版レスポンシブメニュー --}}
-        <a href="{{ route('posts.index') }}" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
+        <a href="{{ route('welcome') }}" class="items-center hidden px-4 py-2 pl-1 text-xl font-bold leading-normal text-white md:flex drop-shadow-lg">だてまき</a>
         <div class="hidden md:items-stretch md:flex-grow md:flex">
             <div class="flex items-stretch justify-end pr-2 ml-auto">
                 @if (Auth::check())
