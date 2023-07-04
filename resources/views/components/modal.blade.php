@@ -62,6 +62,13 @@ $maxWidth = [
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
 
+        {{-- 投稿画面の場合は、モーダル上部に閉じるボタンを表示する。 --}}
+    @if (Request::routeIs('posts.create'))
+        <div x-on:click="show = false" class="sm:w-full {{ $maxWidth }} sm:mx-auto">
+            <i class="text-4xl lg:hidden fa-solid fa-xmark" style="color: #94a2b8;"></i>
+        </div>
+    @endif
+
     <div
         x-show="show"
         class="mb-6  overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
