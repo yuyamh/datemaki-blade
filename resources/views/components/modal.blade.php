@@ -45,12 +45,12 @@ $maxWidth = [
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
     x-show="show"
-    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    class="fixed inset-0 z-50 px-4 py-6 overflow-y-auto sm:px-0"
     style="display: {{ $show ? 'block' : 'none' }};"
 >
     <div
         x-show="show"
-        class="fixed inset-0 transform transition-all"
+        class="fixed inset-0 transition-all transform"
         x-on:click="show = false"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
@@ -61,6 +61,13 @@ $maxWidth = [
     >
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
+
+        {{-- 投稿画面の場合は、モーダル上部に閉じるボタンを表示する。 --}}
+    @if (Request::routeIs('posts.create'))
+        <div x-on:click="show = false" class="sm:w-full {{ $maxWidth }} sm:mx-auto">
+            <i class="text-4xl lg:hidden fa-solid fa-xmark" style="color: #94a2b8;"></i>
+        </div>
+    @endif
 
     <div
         x-show="show"
