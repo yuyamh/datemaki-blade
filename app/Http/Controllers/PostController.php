@@ -216,7 +216,7 @@ class PostController extends Controller
      */
     public function bookmark_posts()
     {
-        $posts = \Auth::user()->bookmark_posts()->latest()->paginate(20);
+        $posts = \Auth::user()->bookmark_posts()->latest()->paginate(15);
         $data = ['posts' => $posts];
 
         return view('posts.bookmarks', $data);
