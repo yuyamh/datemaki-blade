@@ -24,11 +24,7 @@ class UserController extends Controller
         // キーワードで検索をしたときだけ実行
         if ($keyword)
         {
-            $word = '%' . $keyword . '%';
-            $query->where(function ($q) use ($word)
-            {
-                $q->where('name', 'like', $word);
-            });
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
         }
 
         $users = $query->paginate(15);
