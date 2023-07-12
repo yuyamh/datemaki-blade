@@ -17,7 +17,7 @@ class ProfilePolicy
      */
     public function update(User $user)
     {
-        // ユーザー本人かつゲストユーザーでなければ、アクセス可能
+        // ユーザー本人かつ、ゲストユーザーでないならば、アクセス可能
         return \Auth::id() == $user->id && $user->role !== 'guest';
     }
 
@@ -29,9 +29,7 @@ class ProfilePolicy
      */
     public function delete(User $user)
     {
-        // ユーザー本人かつゲストユーザーでなければ、アクセス可能
+        // ユーザー本人かつ、ゲストユーザーでないならば、アクセス可能
         return \Auth::id() == $user->id && $user->role !== 'guest';
     }
-
-    // TODO:この設定したポリシーが反映されているかどうか確かめろ。
 }
