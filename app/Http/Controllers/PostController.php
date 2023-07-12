@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -33,7 +33,7 @@ class PostController extends Controller
             {
                 $q->where('title', 'like', $word);
                 $q->orWhere('description', 'like', $word);
-            $q->orWhereHas('user', function ($u) use ($word)
+                $q->orWhereHas('user', function ($u) use ($word)
                 {
                     $u->where('name', 'like', $word);
                 });
