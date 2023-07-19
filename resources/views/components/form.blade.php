@@ -1,4 +1,7 @@
 @csrf
+<div class="py-4 mt-8 mb-12 text-2xl font-bold bg-white rounded-md border-x-8 border-x-orange-500">
+    <h1 class="ml-2">{{ $subtitle }}</h1>
+</div>
 <div class="form-group">
     <label for="title" class="block text-lg">
         <span>タイトル</span>
