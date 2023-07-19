@@ -70,3 +70,11 @@ table.table-index td {
 .drop-buttons {
     @apply m-3 text-base bg-transparent rounded-lg hover:text-yellow-800 focus:bg-yellow-200 focus:ring-yellow-800 active:bg-yellow-100 focus:text-yellow-800;
 }
+
+#panel {
+    @apply transition-all duration-200 ease-out overflow-hidden;
+}
+
+#panel:hidden {
+    @apply !h-0 block invisible;
+}
