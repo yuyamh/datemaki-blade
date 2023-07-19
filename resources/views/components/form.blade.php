@@ -2,13 +2,16 @@
 <div class="form-group">
     <label for="title" class="block text-lg">
         <span>タイトル</span>
-        <span class="text-sm text-gray-500">&ensp;-&nbsp;必須</span>
+        <span class="text-sm text-red-500">&ensp;※&nbsp;必須</span>
     </label>
     <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" placeholder="例：クラスメートに自己紹介しよう" class="form-input">
     <x-input-error :messages="$errors->get('title')" class="mt-2" />
 </div>
 <div class="form-group">
-    <p class="block text-lg">レベル（CEFR基準）</p>
+    <p class="block text-lg">
+        <span>レベル（CEFR基準）</span>
+        <span class="text-sm text-red-500">&ensp;※&nbsp;必須</span>
+    </p>
     <div class="grid w-full grid-cols-6 p-2 space-x-2 bg-gray-200 shadow-sm rounded-xl">
         {{-- A1をselectedに設定 --}}
         <div>
@@ -53,7 +56,7 @@
 <div class="form-group">
     <label for="description" class="block text-lg">
         <span>概要</span>
-        <span class="text-sm text-gray-500">&ensp;-&nbsp;必須、マークダウン記法可</span>
+        <span class="text-sm text-red-500">&ensp;※&nbsp;必須、マークダウン記法可</span>
         <button
         class="ml-1 hover:scale-90 active:scale-80"
         x-data=""
