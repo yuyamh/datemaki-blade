@@ -1,9 +1,6 @@
 <x-app-layout>
     <x-slot name="header">教案詳細</x-slot>
     <x-slot name="title">教案詳細</x-slot>
-    <div class="py-4 mt-8 mb-12 text-2xl font-bold bg-white rounded-md border-x-8 border-x-orange-500">
-        <h1 class="ml-2">教案詳細</h1>
-    </div>
     <div class="w-full pb-16">
         <div class="flex items-center justify-between mb-5">
             <h1 class="w-2/3 pl-1 text-2xl truncate lg:text-3xl lg:w-4/5">{{ $post->title }}</h1>

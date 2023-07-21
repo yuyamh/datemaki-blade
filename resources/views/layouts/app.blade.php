@@ -41,14 +41,12 @@
         @endif
 
         <main class="w-full row-auto px-4 mx-auto">
-            <div class="block w-full py-12">
-                <div class="flex flex-col md:px-12 md:flex-col-reverse">
-                    <div>
-                        {{ $slot }}
-                    </div>
-                    <div class="block">
-                        <x-search-form />
-                    </div>
+            <div class="block w-full py-12 lg:px-4 lg:grid-cols-12 lg:grid">
+                <div class="lg:col-span-9">
+                    {{ $slot }}
+                </div>
+                <div class="block px-6 lg:col-span-3">
+                    <x-search-form />
                 </div>
             </div>
         </main>
