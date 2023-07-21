@@ -17,7 +17,7 @@
     >{{ __('Delete Account') }}</x-danger-button>
     @else
     <button
-    disabled
+        disabled
         class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white bg-gray-500 rounded-md"
     >{{ __('Delete Account') }}</button>
     <p class="text-xs text-red-500">※削除不可</p>
