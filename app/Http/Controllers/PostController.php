@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Facades\PostService;
 
 class PostController extends Controller
 {
@@ -116,22 +117,7 @@ class PostController extends Controller
     {
         if (isset($post->file_size))
         {
-            $kilobyte = 1024; // 1KB
-            $megabyte = $kilobyte * 1000; // 1MB
-
-            // アップロードファイルのサイズをメガバイト、キロバイトへ変換
-            if ($megabyte <= $post->file_size)
-            {
-                // メガバイトへ変換、小数点2桁より下の桁は四捨五入
-                $post->file_size = round($post->file_size / $megabyte, 2) . 'MB';
-            } elseif ($kilobyte <= $post->file_size)
-            {
-                // キロバイトへ変換、小数点2桁より下の桁は四捨五入
-                $post->file_size = round($post->file_size / $kilobyte, 2) . 'KB';
-            } else
-            {
-                $post->file_size = $post->file_size . 'B';
-            }
+            $post->file_size = PostService::convertBytesToMegaBytes($post->file_size);
         }
 
         $data = ['post' => $post];
