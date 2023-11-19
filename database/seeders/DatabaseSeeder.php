@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             // 本番環境は本格的なサンプルデータ登録。
             $this->call([
                 SampleUserSeeder::class, // サンプルユーザの登録
-                SamplePostsSeeder::class, // サンプルデータの登録
+                // SamplePostsSeeder::class, // サンプルデータの登録
             ]);
         }
     }
