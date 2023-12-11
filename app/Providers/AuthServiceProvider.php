@@ -35,5 +35,11 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        // CSVダウンロードは管理者権限を持つユーザのみ認可
+        Gate::define('user-exportCsv', function (User $user)
+        {
+            return $user->role === 'admin';
+        });
     }
 }

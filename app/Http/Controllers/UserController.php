@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -54,6 +55,12 @@ class UserController extends Controller
     // 全ユーザ情報のCSVエクスポート
     public function exportCsv()
     {
+        $user = \Auth::user();
+        if(!Gate::allows('user-exportCsv', $user))
+        {
+            abort(403);
+        }
+
         $callback = function ()
         {
             $stream = fopen('php://output', 'w');
