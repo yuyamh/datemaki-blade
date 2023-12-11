@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/posts/{post}/unbookmark', [BookmarkController::class, 'destroy'])->name('bookmarks.destroy');
     Route::post('/posts/{post}/bookmark', [BookmarkController::class, 'store'])->name('bookmarks.store');
     Route::get('/bookmarks', [PostController::class, 'bookmark_posts'])->name('bookmarks');
+    Route::get('user/scv', [UserController::class, 'exportCsv'])->name('user.exportCsv');
 });
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
