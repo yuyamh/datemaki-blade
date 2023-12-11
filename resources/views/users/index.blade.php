@@ -14,9 +14,14 @@
 </div>
 @else
 <div class="lg:mr-6">
+    @can('user-exportCsv')
     <div class="mt-2 mb-5 text-right">
-        <x-primary-button type="button" class="bg-green-500 shadow-md hover:bg-green-400 hover:scale-95 active:scale-90 active:ring-offset-0 focus:ring-offset-0 active:bg-green-400 focus:bg-green-400 focus:ring-transparent" onclick="location.href='{{ route('user.exportCsv') }}'">CSVダウンロード</x-primary-button>
+        <x-primary-button type="button" class="bg-green-500 shadow-md hover:bg-green-400 hover:scale-95 active:scale-90 active:ring-offset-0 focus:ring-offset-0 active:bg-green-400 focus:bg-green-400 focus:ring-transparent" onclick="location.href='{{ route('user.exportCsv') }}'">
+            <i class="mr-1 fa-solid fa-file-csv fa-xl"></i>
+            全ユーザを出力
+        </x-primary-button>
     </div>
+    @endcan
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         @foreach ($users as $user)
         <div class="flex flex-col items-start justify-center w-full p-3 bg-white rounded-lg cursor-pointer hover:duration-200 sahdow-lg card hover:scale-95 hover:transition-all hover:bg-yellow-50" data-href="{{ route('users.show', $user->id) }}">
