@@ -52,5 +52,6 @@
             </div>
         </main>
         <x-footer class="sticky bottom-0"/>
+        <script src="{{ asset('/js/export_user_ajax.js') }}"></script>
     </body>
 </html>

@@ -55,6 +55,7 @@ class UserController extends Controller
     // 全ユーザ情報のCSVエクスポート
     public function exportCsv()
     {
+        // ユーザの権限が「admin」のみ認可
         $user = \Auth::user();
         if(!Gate::allows('user-exportCsv', $user))
         {
@@ -64,6 +65,8 @@ class UserController extends Controller
         $callback = function ()
         {
             $stream = fopen('php://output', 'w');
+
+            // ヘッダー行
             $head = [
                 'ID',
                 '名前',
@@ -72,13 +75,11 @@ class UserController extends Controller
                 '投稿件数',
                 '会員登録日時',
             ];
-
-            mb_convert_variables('SJIS', 'UTF-8', $head);
+            mb_convert_variables('SJIS-win', 'UTF-8', $head);
             fputcsv($stream, $head);
 
-
+            // データ
             $users = User::with('posts')->orderBy('id');
-
             foreach ($users->cursor() as $user)
             {
                 $data = [
@@ -89,20 +90,18 @@ class UserController extends Controller
                     count($user->posts),
                     $user->created_at,
                 ];
-                mb_convert_variables('SJIS', 'UTF-8', $data);
+                mb_convert_variables('SJIS-win', 'UTF-8', $data);
                 fputcsv($stream, $data);
             }
             fclose($stream);
         };
 
-        $fileName = Carbon::now()->format('YmdHis') . '_userList.csv';
-
+        // レスポンスヘッダー
         $headers = [
-            'Content-type' => 'text/csv',
-            'Content-Disposition' => 'attachment;'
-
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment;',
         ];
 
-        return response()->streamDownload($callback, $fileName, $headers);
+        return response()->streamDownload($callback, 'userList.csv', $headers);
     }
 }
