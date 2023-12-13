@@ -18,6 +18,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body class="grid min-h-screen grid-cols-1 font-sans antialiased bg-gray-100">
         <div class="sticky top-0 z-50">
@@ -51,5 +52,6 @@
             </div>
         </main>
         <x-footer class="sticky bottom-0"/>
+        <script src="{{ asset('/js/export_user_ajax.js') }}"></script>
     </body>
 </html>

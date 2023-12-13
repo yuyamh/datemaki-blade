@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -48,5 +50,58 @@ class UserController extends Controller
         $data = ['posts' => $posts, 'user_name' => $user_name];
 
         return view('users.show', $data);
+    }
+
+    // 全ユーザ情報のCSVエクスポート
+    public function exportCsv()
+    {
+        // ユーザの権限が「admin」のみ認可
+        $user = \Auth::user();
+        if(!Gate::allows('user-exportCsv', $user))
+        {
+            abort(403);
+        }
+
+        $callback = function ()
+        {
+            $stream = fopen('php://output', 'w');
+
+            // ヘッダー行
+            $head = [
+                'ID',
+                '名前',
+                'メールアドレス',
+                '権限',
+                '投稿件数',
+                '会員登録日時',
+            ];
+            mb_convert_variables('SJIS-win', 'UTF-8', $head);
+            fputcsv($stream, $head);
+
+            // データ
+            $users = User::with('posts')->orderBy('id');
+            foreach ($users->cursor() as $user)
+            {
+                $data = [
+                    $user->id,
+                    $user->name,
+                    $user->email,
+                    $user->role,
+                    count($user->posts),
+                    $user->created_at,
+                ];
+                mb_convert_variables('SJIS-win', 'UTF-8', $data);
+                fputcsv($stream, $data);
+            }
+            fclose($stream);
+        };
+
+        // レスポンスヘッダー
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment;',
+        ];
+
+        return response()->streamDownload($callback, 'userList.csv', $headers);
     }
 }
