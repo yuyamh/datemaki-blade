@@ -79,21 +79,24 @@ class UserController extends Controller
             fputcsv($stream, $head);
 
             // データ
-            $users = User::with('posts')->orderBy('id');
-            foreach ($users->cursor() as $user)
-            {
-                $data = [
-                    $user->id,
-                    $user->name,
-                    $user->email,
-                    $user->role,
-                    count($user->posts),
-                    $user->created_at,
-                ];
-                mb_convert_variables('SJIS-win', 'UTF-8', $data);
-                fputcsv($stream, $data);
-            }
-            fclose($stream);
+            User::with('posts')
+                    ->orderBy('id')
+                    ->chunkById(100, function ($users) use ($stream) {
+                        foreach ($users as $user)
+                        {
+                            $data = [
+                                $user->id,
+                                $user->name,
+                                $user->email,
+                                $user->role,
+                                count($user->posts),
+                                $user->created_at,
+                            ];
+                            mb_convert_variables('SJIS-win', 'UTF-8', $data);
+                            fputcsv($stream, $data);
+                        }
+                    });
+                    fclose($stream);
         };
 
         // レスポンスヘッダー
