@@ -2,12 +2,12 @@
     <div class="mr-3">
         {{-- ゲストユーザーの場合は、指定した画像をプロフ画像として表示する。 --}}
         @if (Auth::check() && $user->role === 'guest')
-            <img src="{{ asset('images/guest_user_icon.png') }}" class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full" alt="photo">
+            <img src="{{ asset('images/guest_user_icon.png') }}" class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full md:h-32 md:w-32" alt="photo">
         @else
             <img
                 id="preview"
                 src="{{ isset(Auth::user()->profile_image) ? Auth::user()->image_url : asset('images/user_icon.png') }}"
-                class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full">
+                class="object-cover w-16 h-16 bg-gray-200 border-none rounded-full md:h-32 md:w-32">
         @endif
     </div>
     <div class="flex items-center">
