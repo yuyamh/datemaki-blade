@@ -13,12 +13,19 @@
     <div class="flex items-center">
         {{-- ゲストユーザーの場合は、プロフ画像を変更できない --}}
         @can ('update', $user)
+        {{-- スマホ・タブレット版ボタン --}}
         <button
-            {{-- x-data=""
-            x-on:click.prevent="$dispatch('open-modal', 'modal-upload-profile-icon')" --}}
             id="isNotDesktop"
             type="button"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 uppercase bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 active:outline-none active:ring-2 active:ring-orange-400 active:ring-offset-2 active:text-gray-500 active:bg-gray-50 focus:ring-orange-400">
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 uppercase bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 active:outline-none active:ring-2 active:ring-orange-400 active:ring-offset-2 active:text-gray-500 active:bg-gray-50 focus:ring-orange-400 lg:hidden">
+            アイコンを設定
+        </button>
+        {{-- PC版ボタン --}}
+        <button
+            x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'modal-upload-profile-icon')"
+            type="button"
+            class="items-center hidden px-4 py-2 text-sm font-medium text-gray-700 uppercase bg-white border border-gray-300 rounded-md shadow-sm lg:inline-flex hover:bg-gray-100 active:outline-none active:ring-2 active:ring-orange-400 active:ring-offset-2 active:text-gray-500 active:bg-gray-50 focus:ring-orange-400">
             アイコンを設定
         </button>
         <x-modal name="modal-upload-profile-icon">
