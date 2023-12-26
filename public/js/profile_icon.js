@@ -1,6 +1,7 @@
 // プロフィールアイコンの初期値
 let initialSrc = $('#preview').attr('src');
 
+// スマホ・タブレット版の場合はモーダルなし
 $('#isNotDesktop').on('click', function () {
     let iconInput = $('#iconInput');
     iconInput.click();
@@ -14,6 +15,7 @@ $('#iconInput').on('change', function (e) {
     };
 });
 
+// モーダルの表示トグル
 $('#isDesktop').on('click', function () {
     if ($('#modal').hasClass('hidden')) {
         $('#modal').removeClass('hidden');
@@ -35,13 +37,13 @@ $(document).on('change', '#uploader', function (e) {
         $('#modal').addClass('hidden');
         $('#preview').trigger('change');
     };
-
+    // TODO:fileReaderの例外処理を記述する
     fileReader.readAsDataURL(e.target.files[0]);
 });
 
+//HTML自体にドラッグ＆ドロップしても遷移しないようにする
 $(function () {
     $(document).on('dragover drop', function (e) {
-        //HTML自体にドラッグ＆ドロップしても遷移しないようにする
         e.preventDefault();
         e.stopPropagation();
 
@@ -50,13 +52,13 @@ $(function () {
     });
 });
 
-
+// プレビューが変わったら「元に戻す」ボタンを表示
 $('#preview').on('change', function () {
     $('#cancelBtn').removeClass('hidden').addClass('inline-flex');
 });
 
+// 「元に戻す」ボタン押下でプレビュー・ボタンの消去
 $('#cancelBtn').on('click', function () {
     $('#preview').attr('src', initialSrc);
     $('#cancelBtn').removeClass('inline-flex').addClass('hidden');
 });
-
