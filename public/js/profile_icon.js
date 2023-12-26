@@ -20,6 +20,9 @@ $('#isDesktop').on('click', function () {
     if ($('#modal').hasClass('hidden')) {
         $('#modal').removeClass('hidden');
     }
+
+    // Inputの中身初期化
+    $('#uploader').val('');
 });
 
 // ドラッグ&ドロップ
@@ -59,6 +62,7 @@ $('#preview').on('change', function () {
 
 // 「元に戻す」ボタン押下でプレビュー・ボタンの消去
 $('#cancelBtn').on('click', function () {
+    // プレビューの消去
     $('#preview').attr('src', initialSrc);
     $('#cancelBtn').removeClass('inline-flex').addClass('hidden');
 });
