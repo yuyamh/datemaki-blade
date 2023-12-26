@@ -38,7 +38,7 @@
         <button
             id="cancelBtn"
             type="button"
-            class="inline-flex items-center px-4 py-2 mt-1 text-sm font-medium text-gray-700 uppercase bg-white border border-gray-300 rounded-md shadow-sm md:ml-1 hover:bg-gray-100 active:outline-none active:ring-2 active:ring-orange-400 active:ring-offset-2 active:text-gray-500 active:bg-gray-50 focus:ring-orange-400 md:mt-0">
+            class="items-center hidden px-4 py-2 mt-1 text-sm font-medium text-gray-700 uppercase bg-white border border-gray-300 rounded-md shadow-sm md:ml-1 hover:bg-gray-100 active:outline-none active:ring-2 active:ring-orange-400 active:ring-offset-2 active:text-gray-500 active:bg-gray-50 focus:ring-orange-400 md:mt-0">
             元に戻す
         </button>
         @else

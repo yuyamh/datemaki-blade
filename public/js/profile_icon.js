@@ -1,3 +1,6 @@
+// プロフィールアイコンの初期値
+let initialSrc = $('#preview').attr('src');
+
 $('#isNotDesktop').on('click', function () {
     let iconInput = $('#iconInput');
     iconInput.click();
@@ -7,6 +10,7 @@ $('#iconInput').on('change', function (e) {
     if (e.target.files.length > 0) {
         let iconUrl = URL.createObjectURL(e.target.files[0]);
         $('#preview').attr('src', iconUrl);
+        $('#preview').trigger('change');
     };
 });
 
@@ -29,6 +33,7 @@ $(document).on('change', '#uploader', function (e) {
         $('#iconInput').prop('files', e.target.files);
         $('#preview').attr('src', fileReader.result);
         $('#modal').addClass('hidden');
+        $('#preview').trigger('change');
     };
 
     fileReader.readAsDataURL(e.target.files[0]);
@@ -44,3 +49,14 @@ $(function () {
         $('label[for="uploader"]').addClass('border-orange-400 border-4');
     });
 });
+
+
+$('#preview').on('change', function () {
+    $('#cancelBtn').removeClass('hidden').addClass('inline-flex');
+});
+
+$('#cancelBtn').on('click', function () {
+    $('#preview').attr('src', initialSrc);
+    $('#cancelBtn').removeClass('inline-flex').addClass('hidden');
+});
+
