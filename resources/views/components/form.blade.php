@@ -72,18 +72,77 @@
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
 </div>
 <div class="form-group">
-    <label for="file" class="flex flex-col mb-3 text-lg md:flex-row">
-        <span>添付ファイル</span>
-        <span class="p-1 text-sm bg-orange-200 rounded-md md:ml-3 md:text-base">
-            形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
-        </span>
-    </label>
-    @if (isset($post->file_name))
-        <div class="flex my-2 ml-2 text-sm">
-            <p class="mr-4">現在のファイル&nbsp;:&nbsp;{{ $post->file_name}}</p>
-            <p><a href="{{ $post->file_url }}" class="underline hover:text-gray-600">表示</a></p>
+    <p class="block mb-2 text-lg">
+        <span>ファイルアップロード</span>
+        <span class="ml-2 text-sm text-red-500">※1点まで</span>
+    </p>
+    <div class="flex flex-col-reverse md:flex-row">
+        <div class="flex flex-col items-center justify-center w-full h-64 bg-gray-200 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer md:w-2/3 hover:bg-gray-100 hover:border-orange-400 hover:border-4" onclick="$('#form-upload-input').click()" id="form-dropzone">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i class="m-5 text-6xl text-gray-400 fa-solid fa-cloud-arrow-up"></i>
+                <p class="hidden mb-2 text-sm text-gray-500 lg:block">ここにファイルをドロップ</p>
+                <p class="mb-2 text-sm text-gray-500"><span class="hidden lg:inline">または</span>クリックしてファイルを選択</p>
+            </div>
         </div>
-    @endif
-    <input type="file" name="file_name" id="file" class="w-full my-1">
+        <input type="file" name="file_name" id="form-upload-input" class="hidden w-full my-1">
+        <div>
+            @if (isset($post->file_name))
+            <div class="my-2 ml-2 text-sm">
+                <p class="mb-1">現在のファイル&nbsp;:&nbsp;</p>
+                <p class="flex mb-5">
+                    <span>{{ $post->file_name}}</span>
+                    <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="ml-3 underline hover:text-gray-600">表示</a>
+                </p>
+            </div>
+            @endif
+            <p class="mt-2 mb-4 text-xl mb:text-2xl md:ml-3" id="dropped-filename"></p>
+        </div>
+    </div>
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>
+<div class="w-full border-2 border-gray-400 rounded-lg shadow-md bg-gray-50 h-52 md:w-1/2">
+
+</div>
+<script>
+    $(function () {
+        // ドロップゾーンに入ったときCSSの指定を追加
+        $('#form-dropzone').on('dragenter dragover', function () {
+            $(this).addClass('bg-gray-50 border-orange-400 border-4');
+        });
+
+        // ドロップゾーンから離れたときに追加したCSS指定を削除
+        $('#form-dropzone').on('dragleave', function () {
+            $(this).removeClass('bg-gray-50 border-orange-400 border-4');
+        });
+
+        // ドロップされたファイルを取得する
+        $('#form-dropzone').on('drop', function (e) {
+            $('#form-upload-input')[0].files = e.originalEvent.dataTransfer.files;
+            // changeイベントの発火
+            $('#form-upload-input').trigger('change');
+        });
+
+        // ファイルが選択されたら、ファイル名を表示する
+        $('#form-upload-input').on('change', function () {
+            let fileName = $(this)[0].files[0].name;
+            let fileName_html = `
+                ${fileName}<i class="ml-2 text-gray-900 hover:text-gray-300 fa-solid fa-xmark" id="upload-close-btn"></i>
+            `;
+            $('#dropped-filename').html(fileName_html);
+        });
+
+        // ファイル名横の「ｘ」ボタン押下で、ドラッグ&ドロップしたファイル消去
+        $('#dropped-filename').on('click','#upload-close-btn', function () {
+            // ファイル名の非表示
+            $('#dropped-filename').empty();
+            // ファイルをInputから削除
+            $('#form-upload-input').val('');
+        });
+
+        // デフォルトの挙動をキャンセルする
+        $(document).on('dragover drop', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    });
+</script>
