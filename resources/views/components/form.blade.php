@@ -95,13 +95,19 @@
                 </p>
             </div>
             @endif
-            <p class="mt-2 mb-4 text-xl mb:text-2xl md:ml-3" id="dropped-filename"></p>
+            <p class="mt-2 mb-4 text-base md:ml-3" id="dropped-filename"></p>
         </div>
     </div>
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>
-<div class="w-full border-2 border-gray-400 rounded-lg shadow-md bg-gray-50 h-52 md:w-1/2">
-
+<div class="w-full h-40 p-3 mb-6 text-sm border-2 border-gray-300 rounded-lg shadow-md bg-gray-50 md:w-2/3 md:text-base">
+    <p class="my-1 font-semibold text-orange-500">ファイルアップロードに関する注意事項</p>
+    <ul class="py-2">
+        <li class="py-1">点数：1点まで</li>
+        <li class="py-1">ファイル形式：pdf&thinsp;/&thinsp;docx&thinsp;/&thinsp;zip&thinsp;/&thinsp;xlsx&thinsp;/&thinsp;jpeg&thinsp;/&thinsp;jpg&thinsp;/&thinsp;png</li>
+        {{-- TODO:ファイルの容量を記載する --}}
+        {{-- <li>容量&nbsp;:&nbsp;KBまで</li> --}}
+    </ul>
 </div>
 <script>
     $(function () {
@@ -125,8 +131,26 @@
         // ファイルが選択されたら、ファイル名を表示する
         $('#form-upload-input').on('change', function () {
             let fileName = $(this)[0].files[0].name;
+            let fileType = $(this)[0].files[0].type;
+
+            // ファイルタイプからファイルアイコンを判別する
+            let fileIcon = '';
+            if (fileType === 'image/png' || fileType === 'image/jpeg') {
+                fileIcon = '<i class="mr-1 text-gray-900 fa-regular fa-file-image"></i>';
+            } else if (fileType === 'application/zip') {
+                fileIcon = '<i class="mr-1 text-gray-900 fa-regular fa-file-zipper"></i>';
+            } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                fileIcon = '<i class="mr-1 text-gray-900 fa-regular fa-file-word"></i>';
+            } else if (fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                fileIcon = '<i class="mr-1 text-gray-900 fa-regular fa-file-excel"></i>';
+            } else if (fileType === 'application/pdf') {
+                fileIcon = '<i class="mr-1 text-gray-900 fa-regular fa-file-pdf"></i>';
+            } else {
+                fileIcon = '<i class="mr-1 text-gray-800 fa-solid fa-file-circle-question"></i>';
+            }
+
             let fileName_html = `
-                ${fileName}<i class="ml-2 text-gray-900 hover:text-gray-300 fa-solid fa-xmark" id="upload-close-btn"></i>
+                ${fileIcon}${fileName}<i class="ml-1 text-gray-900 hover:text-gray-300 fa-solid fa-xmark" id="upload-close-btn"></i>
             `;
             $('#dropped-filename').html(fileName_html);
         });
