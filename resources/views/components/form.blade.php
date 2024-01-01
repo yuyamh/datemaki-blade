@@ -72,18 +72,41 @@
     <x-input-error :messages="$errors->get('description')" class="mt-2" />
 </div>
 <div class="form-group">
-    <label for="file" class="flex flex-col mb-3 text-lg md:flex-row">
-        <span>添付ファイル</span>
-        <span class="p-1 text-sm bg-orange-200 rounded-md md:ml-3 md:text-base">
-            形式&nbsp;:&nbsp;pdf,&nbsp;docx,&nbsp;zip,&nbsp;xlsx,&nbsp;jpeg,&nbsp;jpg,&nbsp;png
-        </span>
-    </label>
-    @if (isset($post->file_name))
-        <div class="flex my-2 ml-2 text-sm">
-            <p class="mr-4">現在のファイル&nbsp;:&nbsp;{{ $post->file_name}}</p>
-            <p><a href="{{ $post->file_url }}" class="underline hover:text-gray-600">表示</a></p>
+    <p class="block mb-2 text-lg">
+        <span>ファイルアップロード</span>
+        <span class="ml-2 text-sm text-red-500">※1点まで</span>
+    </p>
+    <div class="flex flex-col-reverse md:flex-row">
+        <div class="flex flex-col items-center justify-center w-full h-64 bg-gray-200 border-2 border-gray-400 border-dashed rounded-lg cursor-pointer md:w-2/3 hover:bg-gray-100 hover:border-orange-400 hover:border-4" onclick="$('#form-upload-input').click()" id="form-dropzone">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i class="m-5 text-6xl text-gray-400 fa-solid fa-cloud-arrow-up"></i>
+                <p class="hidden mb-2 text-sm text-gray-500 lg:block">ここにファイルをドロップ</p>
+                <p class="mb-2 text-sm text-gray-500"><span class="hidden lg:inline">または</span>クリックしてファイルを選択</p>
+            </div>
         </div>
-    @endif
-    <input type="file" name="file_name" id="file" class="w-full my-1">
+        <input type="file" name="file_name" id="form-upload-input" class="hidden w-full my-1">
+        <div>
+            @if (isset($post->file_name))
+            <div class="my-2 ml-2 text-sm">
+                <p class="mb-1">現在のファイル&nbsp;:&nbsp;</p>
+                <p class="flex mb-5">
+                    <span>{{ $post->file_name}}</span>
+                    <a href="{{ $post->file_url }}" target="_blank" rel="noopener noreferrer" class="ml-3 underline hover:text-gray-600">表示</a>
+                </p>
+            </div>
+            @endif
+            <p class="mt-2 mb-4 text-base md:ml-3" id="dropped-filename"></p>
+        </div>
+    </div>
     <x-input-error :messages="$errors->get('file_name')" class="mt-2" />
 </div>
+<div class="w-full h-40 p-3 mb-6 text-sm border-2 border-gray-300 rounded-lg shadow-md bg-gray-50 md:w-2/3 md:text-base">
+    <p class="my-1 font-semibold text-orange-500">ファイルアップロードに関する注意事項</p>
+    <ul class="py-2">
+        <li class="py-1">点数：1点まで</li>
+        <li class="py-1">ファイル形式：pdf&thinsp;/&thinsp;docx&thinsp;/&thinsp;zip&thinsp;/&thinsp;xlsx&thinsp;/&thinsp;jpeg&thinsp;/&thinsp;jpg&thinsp;/&thinsp;png</li>
+        {{-- TODO:ファイルの容量を記載する --}}
+        {{-- <li>容量&nbsp;:&nbsp;KBまで</li> --}}
+    </ul>
+</div>
+<script src="{{ asset('js/form_file_upload.js') }}"></script>
